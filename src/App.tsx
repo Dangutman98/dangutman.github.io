@@ -95,6 +95,9 @@ const CONTACT_PHONE_TEL = "+972544363309";
 const LINKEDIN_CERTIFICATIONS_URL =
   "https://www.linkedin.com/in/dan-gutman-0b4334228/details/certifications/";
 
+/** Served from /public — profile photo for nav, hero, and favicon */
+const PROFILE_IMAGE_SRC = "/dan-profile.png";
+
 const navItems: { label: string; href: string }[] = [
   { label: "About", href: "#about" },
   { label: "Stack", href: "#stack" },
@@ -312,10 +315,20 @@ function NavBar({
       <nav className="relative mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
         <a
           href="#about"
-          className="shrink-0 text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-gray-400"
+          className="flex shrink-0 items-center gap-3"
           onClick={() => setMobileOpen(false)}
         >
-          Dan Gutman
+          <img
+            src={PROFILE_IMAGE_SRC}
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0 rounded-full object-cover object-center ring-2 ring-slate-200 dark:ring-gray-600"
+            decoding="async"
+          />
+          <span className="font-nunito text-sm font-medium tracking-wide text-sky-600 dark:text-sky-400">
+            Dan Gutman
+          </span>
         </a>
 
         {/* Desktop */}
@@ -387,11 +400,21 @@ function Hero() {
         <div className="w-[600px] h-[600px] rounded-full bg-sky-500/10 blur-3xl" />
       </div>
 
-      <p className="text-sky-600 dark:text-sky-400 text-sm font-semibold tracking-widest uppercase mb-4">
+      <p className="text-sky-600 dark:text-sky-400 text-sm font-semibold tracking-widest uppercase mb-6">
         Available for hire
       </p>
 
-      <h1 className="text-5xl sm:text-7xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
+      <img
+        src={PROFILE_IMAGE_SRC}
+        alt="Dan Gutman"
+        width={160}
+        height={160}
+        className="mb-10 aspect-square h-36 w-36 rounded-full object-cover object-center shadow-2xl ring-4 ring-slate-200/90 dark:ring-gray-600 sm:h-44 sm:w-44"
+        decoding="async"
+        fetchPriority="high"
+      />
+
+      <h1 className="font-nunito mb-4 text-5xl font-light leading-tight tracking-tight text-sky-600 dark:text-sky-400 sm:text-7xl">
         Dan Gutman
       </h1>
 
