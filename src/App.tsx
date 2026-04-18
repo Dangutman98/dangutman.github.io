@@ -18,6 +18,8 @@ import {
   Globe2,
   Award,
   BadgeCheck,
+  Menu,
+  X,
 } from "lucide-react";
 
 function GithubIcon({ className }: { className?: string }) {
@@ -92,6 +94,15 @@ const CONTACT_PHONE_TEL = "+972544363309";
 
 const LINKEDIN_CERTIFICATIONS_URL =
   "https://www.linkedin.com/in/dan-gutman-0b4334228/details/certifications/";
+
+const navItems: { label: string; href: string }[] = [
+  { label: "About", href: "#about" },
+  { label: "Stack", href: "#stack" },
+  { label: "Education", href: "#education" },
+  { label: "Certs", href: "#certifications" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
 
 const certifications: Certification[] = [
   {
@@ -294,32 +305,73 @@ function NavBar({
   theme: "light" | "dark";
   onToggleTheme: () => void;
 }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200 dark:bg-gray-950/70 dark:border-gray-800">
-      <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-        <span className="text-sm font-semibold tracking-widest text-slate-600 uppercase dark:text-gray-400">
+    <header className="fixed top-0 inset-x-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/70">
+      <nav className="relative mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
+        <a
+          href="#about"
+          className="shrink-0 text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-gray-400"
+          onClick={() => setMobileOpen(false)}
+        >
           Dan Gutman
-        </span>
-        <div className="flex items-center gap-4 sm:gap-5 text-sm text-slate-600 dark:text-gray-400 flex-wrap justify-end">
-          {[
-            "About",
-            "Stack",
-            "Education",
-            "Certs",
-            "Projects",
-            "Contact",
-          ].map((s) => (
+        </a>
+
+        {/* Desktop */}
+        <div className="hidden items-center gap-6 text-sm text-slate-600 dark:text-gray-400 md:flex">
+          {navItems.map((item) => (
             <a
-              key={s}
-              href={`#${s === "Certs" ? "certifications" : s.toLowerCase()}`}
-              className="hover:text-slate-900 dark:hover:text-white transition-colors"
+              key={item.href}
+              href={item.href}
+              className="transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              {s}
+              {item.label}
             </a>
           ))}
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
         </div>
+
+        {/* Mobile: theme + menu */}
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <button
+            type="button"
+            className="p-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-gray-400 dark:hover:text-white"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? (
+              <X className="h-6 w-6" strokeWidth={1.75} />
+            ) : (
+              <Menu className="h-6 w-6" strokeWidth={1.75} />
+            )}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile panel */}
+      {mobileOpen ? (
+        <div
+          id="mobile-nav"
+          className="border-t border-slate-200 bg-white/95 shadow-lg backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/95 md:hidden"
+        >
+          <div className="mx-auto flex max-w-5xl flex-col px-4 py-3 sm:px-6">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="border-b border-slate-100 py-3 text-base font-medium text-slate-700 last:border-0 dark:border-gray-800 dark:text-gray-300"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }
