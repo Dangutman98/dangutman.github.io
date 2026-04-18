@@ -415,7 +415,15 @@ function Hero() {
       />
 
       <h1 className="font-nunito mb-4 text-5xl font-light leading-tight tracking-tight text-sky-600 dark:text-sky-400 sm:text-7xl">
-        Dan Gutman
+        <span className="inline-flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1">
+          <span>Dan Gutman</span>
+          <span
+            aria-hidden
+            className="select-none text-3xl leading-none sm:text-5xl"
+          >
+            🏍️🌊
+          </span>
+        </span>
       </h1>
 
       <h2 className="text-xl sm:text-2xl font-medium text-slate-600 dark:text-gray-300 mb-6">
