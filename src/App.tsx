@@ -207,6 +207,7 @@ const COMMANDS: Record<string, TerminalLine[]> = {
   whoami: [
     { type: "output", text: "┌─ Dan Gutman ────────────────────────────────────────┐", color: "text-indigo-400" },
     { type: "output", text: "│  Role    : Computer Science Graduate                │" },
+    { type: "output", text: "│  Focus   : Backend · Cloud · AI · DevOps            │" },
     { type: "output", text: "│  Location: Haifa, Israel 🌊                          │" },
     { type: "output", text: "│  Status  : Available for hire 🟢                    │" },
     { type: "output", text: "│  Hobbies : Surfing · Extreme sports · Motorcycles   │" },
@@ -262,7 +263,7 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { type: "blank" },
   ],
   contact: [
-    { type: "output", text: "$ ping dan@devops", color: "text-cyan-400" },
+    { type: "output", text: "$ ping dan@workstation", color: "text-cyan-400" },
     { type: "output", text: "PING dan — 1 packet transmitted, 1 received 🟢", color: "text-emerald-400" },
     { type: "blank" },
     { type: "output", text: "  Email  : Dangutman.98@gmail.com" },
@@ -343,7 +344,7 @@ function InteractiveTerminal() {
       <div className="max-w-4xl mx-auto">
         <SectionHeading
           label="Interactive"
-          title="DevOps Console"
+          title="Developer Console"
           sub="Type a command below or click a quick-run button to explore my skills interactively."
         />
 
@@ -356,7 +357,7 @@ function InteractiveTerminal() {
             <span className="w-3 h-3 rounded-full bg-red-500/80" />
             <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-            <span className="ml-3 font-mono text-xs text-gray-500">dan@devops-workstation ~ $</span>
+            <span className="ml-3 font-mono text-xs text-gray-500">dan@workstation ~ $</span>
           </div>
 
           {/* Quick-run buttons */}
@@ -585,8 +586,8 @@ function Hero() {
           I&apos;m a{" "}
           <span className="font-semibold text-gray-900 dark:text-white">Computer Science</span>{" "}
           B.Sc. student at Ruppin Academic Center finishing my degree in 2026, focused on growing in{" "}
-          <span className="font-semibold text-indigo-500 dark:text-indigo-400">cloud, infrastructure, and DevOps</span>
-          {" "}— building reliable platforms, automation, and CI/CD.
+          <span className="font-semibold text-indigo-500 dark:text-indigo-400">Backend development, Cloud & Infrastructure, AI integration, and DevOps</span>
+          {" "}— building reliable systems, automated workflows, and scalable architectures.
         </p>
         <p>
           Based in <span className="font-semibold text-gray-900 dark:text-white">Haifa</span>.
@@ -597,7 +598,7 @@ function Hero() {
           <span className="text-indigo-400 font-semibold">entry-level</span>,{" "}
           <span className="text-indigo-400 font-semibold">internship</span>, and{" "}
           <span className="text-indigo-400 font-semibold">full-time</span>{" "}
-          DevOps & cloud roles — let&apos;s connect.
+          roles across Backend, Cloud, AI, and DevOps — let&apos;s connect.
         </p>
       </div>
 
@@ -919,7 +920,7 @@ function Contact() {
         <SectionHeading
           label="Get in touch"
           title="Let's Connect"
-          sub="Open to entry-level DevOps and cloud roles, internships, and full-time work — reach out anytime."
+          sub="Open to entry-level roles in Backend, Cloud, AI, and DevOps, as well as internships — reach out anytime."
         />
 
         {/* Contact card */}
