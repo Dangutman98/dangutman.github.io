@@ -252,7 +252,7 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { type: "output", text: "$ cat /etc/education", color: "text-indigo-400" },
     { type: "output", text: "Degree  : B.Sc. Computer Science" },
     { type: "output", text: "School  : Ruppin Academic Center, Israel" },
-    { type: "output", text: "Period  : 2022 – 2026 (in progress)" },
+    { type: "output", text: "Period  : 2022 – 2026" },
     { type: "output", text: "Focus   : Software Systems Development" },
     { type: "blank" },
     { type: "output", text: "Top grades:", color: "text-emerald-400" },
@@ -584,8 +584,8 @@ function Hero() {
       <div className="animate-fade-up delay-400 max-w-2xl space-y-3 text-gray-600 dark:text-gray-400 leading-relaxed mb-8 text-sm sm:text-base">
         <p>
           I&apos;m a{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">Computer Science</span>{" "}
-          B.Sc. student at Ruppin Academic Center finishing my degree in 2026, focused on growing in{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">Computer Science B.Sc. graduate</span>{" "}
+          from Ruppin Academic Center, focused on growing in{" "}
           <span className="font-semibold text-indigo-500 dark:text-indigo-400">Backend development, Cloud & Infrastructure, AI integration, and DevOps</span>
           {" "}— building reliable systems, automated workflows, and scalable architectures.
         </p>
@@ -775,7 +775,7 @@ function EducationAndBackground() {
         <SectionHeading
           label="Education & Background"
           title="Credentials & Context"
-          sub="Degree progress, coursework highlights, military service, and languages."
+          sub="Academic background, coursework highlights, military service, and languages."
         />
 
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
@@ -787,7 +787,7 @@ function EducationAndBackground() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white text-lg">B.Sc. Computer Science</h3>
-                <p className="text-indigo-500 dark:text-indigo-400 text-sm font-medium">Ruppin Academic Center · 2022 – 2026 (in progress)</p>
+                <p className="text-indigo-500 dark:text-indigo-400 text-sm font-medium">Ruppin Academic Center · 2022 – 2026 (Graduate)</p>
                 <p className="text-gray-500 dark:text-gray-500 text-sm mt-1">Focus: Software Systems Development</p>
               </div>
             </div>
