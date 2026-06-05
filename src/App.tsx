@@ -206,7 +206,7 @@ const COMMANDS: Record<string, TerminalLine[]> = {
   ],
   whoami: [
     { type: "output", text: "┌─ Dan Gutman ────────────────────────────────────────┐", color: "text-indigo-400" },
-    { type: "output", text: "│  Role    : Junior DevOps Engineer                   │" },
+    { type: "output", text: "│  Role    : Computer Science Graduate                │" },
     { type: "output", text: "│  Location: Haifa, Israel 🌊                          │" },
     { type: "output", text: "│  Status  : Available for hire 🟢                    │" },
     { type: "output", text: "│  Hobbies : Surfing · Extreme sports · Motorcycles   │" },
@@ -576,7 +576,7 @@ function Hero() {
 
       {/* Role */}
       <h2 className="animate-fade-up delay-300 mb-6 text-lg sm:text-2xl font-medium text-gray-500 dark:text-gray-400">
-        Junior DevOps Engineer
+        Computer Science Graduate
       </h2>
 
       {/* Description */}
