@@ -283,11 +283,13 @@ function InteractiveTerminal() {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
   const [histIdx, setHistIdx] = useState(-1);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
   }, [lines]);
 
   function runCommand(cmd: string) {
@@ -375,7 +377,10 @@ function InteractiveTerminal() {
           </div>
 
           {/* Output */}
-          <div className="h-72 sm:h-96 overflow-y-auto bg-gray-950 px-4 pt-3 pb-2 font-mono text-sm leading-6 cursor-text">
+          <div
+            ref={outputRef}
+            className="h-72 sm:h-96 overflow-y-auto bg-gray-950 px-4 pt-3 pb-2 font-mono text-sm leading-6 cursor-text"
+          >
             {lines.map((line, i) => {
               if (line.type === "blank") return <div key={i} className="h-3" />;
               if (line.type === "prompt") return (
@@ -390,7 +395,6 @@ function InteractiveTerminal() {
                 </div>
               );
             })}
-            <div ref={bottomRef} />
           </div>
 
           {/* Input */}
