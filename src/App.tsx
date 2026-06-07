@@ -49,7 +49,7 @@ interface Certification {
 
 const certifications: Certification[] = [
   {
-    title: "AWS Academy Graduate — Cloud Developing",
+    title: "AWS Academy Graduate - Cloud Developing",
     issuer: "Amazon Web Services (AWS)",
     issued: "Jan 2026",
     verifyUrl: "https://www.credly.com/earner/earned/badge/6c5b9b34-0917-4eb3-9ed7-13b06b2753a2",
@@ -77,7 +77,7 @@ const certifications: Certification[] = [
     skills: ["Bash", "Linux Automation"],
   },
   {
-    title: "Learning Linux Basics — Course & Labs",
+    title: "Learning Linux Basics - Course & Labs",
     issuer: "KodeKloud",
     issued: "Jun 2025",
     verifyUrl: "https://learn.kodekloud.com/certificate/4cfa4c0a-e93f-4c42-8d4e-978fd9d0082b",
@@ -108,7 +108,7 @@ const projects: Project[] = [
     href: "https://github.com/Dangutman98/Gmail-Add-on---Malicious-Email-Scorer",
   },
   {
-    title: "Project F1 — Formula 1 Fan Site",
+    title: "Project F1 - Formula 1 Fan Site",
     description: "Engineered a full-stack web application using React and .NET Web API, designing RESTful services and managing data persistence with Entity Framework and SQL databases.",
     tags: ["React", ".NET Web API", "Entity Framework", "SQL Server", "Firebase"],
     icon: <Car className="w-5 h-5 text-rose-500" />,
