@@ -267,53 +267,6 @@ export default function App() {
         <section id="overview" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             
-            {/* Haifa Vibe widget (spans 2 cols, 2 rows) */}
-            <div className="bento-card md:col-span-2 md:row-span-2 p-6 flex flex-col justify-between min-h-[360px] relative group overflow-hidden">
-              {/* Surfing photo background always visible but styled nicely */}
-              <div className="absolute inset-0 pointer-events-none">
-                <img 
-                  src="/dan-surf.jpg" 
-                  alt="Dan surfing" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Theme-aware overlay for text readability */}
-                <div className="absolute inset-0 bg-stone-50/80 dark:bg-[#09090b]/85 group-hover:bg-stone-50/60 group-hover:dark:bg-[#09090b]/70 transition-colors duration-300" />
-              </div>
-
-              <div className="flex items-center justify-between z-10">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-stone-500 dark:text-zinc-400 group-hover:text-stone-700 dark:group-hover:text-zinc-200 transition-colors">Haifa Local · Live Clock</span>
-                </div>
-                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-500 animate-spin-slow transition-colors" />
-              </div>
-              
-              <div className="z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
-                <div className="flex items-baseline gap-2 text-stone-850 dark:text-white font-mono font-black text-5xl md:text-6xl tracking-tight">
-                  <Clock className="w-8 h-8 md:w-10 md:h-10 text-amber-500 dark:text-amber-400 shrink-0" />
-                  <span>{time || "12:00:00"}</span>
-                </div>
-                <p className="text-xs font-mono text-stone-500 dark:text-zinc-400 mt-2 ml-1">Haifa, Israel · timezone UTC+3 🌊</p>
-              </div>
-
-              {/* Surf Conditions */}
-              <div className="z-10 py-3 mt-4 border-y border-stone-200/40 dark:border-zinc-800/40 space-y-1">
-                <span className="text-[10px] font-mono uppercase text-amber-600 dark:text-amber-400 font-bold block">Surf & Weather Vibe</span>
-                <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-mono text-stone-600 dark:text-zinc-400 group-hover:text-stone-850 dark:group-hover:text-zinc-200 transition-colors">
-                  <span className="flex items-center gap-1">🏄‍♂️ Swell: 0.8m @ 7s</span>
-                  <span className="flex items-center gap-1">💨 Wind: 6kt Offshore</span>
-                  <span className="flex items-center gap-1">🌡️ Sea Temp: 22°C</span>
-                </div>
-              </div>
-              
-              <div className="pt-4 z-10 flex items-center justify-between border-t border-stone-200/20 dark:border-zinc-800/20">
-                <p className="text-sm md:text-base italic font-serif text-stone-700 dark:text-zinc-300 group-hover:text-stone-900 group-hover:dark:text-white transition-colors leading-snug animate-wave">
-                  &ldquo;Surfer by day, Software Engineer by night.&rdquo;
-                </p>
-                <span className="text-[10px] text-stone-400 dark:text-zinc-500 font-mono hidden sm:inline">Med Sea 🌊</span>
-              </div>
-            </div>
-
             {/* profile bento card (spans 2 cols, 2 rows) */}
             <div className="bento-card p-6 md:col-span-2 md:row-span-2 flex flex-col justify-between min-h-[360px]">
               <div>
@@ -360,8 +313,54 @@ export default function App() {
               </div>
             </div>
 
+{/* Haifa Vibe widget (spans 2 cols, 2 rows) */}
+            <div className="bento-card md:col-span-2 md:row-span-2 p-6 flex flex-col justify-between min-h-[360px] relative group overflow-hidden">
+              {/* Surfing photo background always visible but styled nicely */}
+              <div className="absolute inset-0 pointer-events-none">
+                <img 
+                  src="/dan-surf.jpg" 
+                  alt="Dan surfing" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Theme-aware overlay for text readability */}
+                <div className="absolute inset-0 bg-stone-50/80 dark:bg-[#09090b]/85 group-hover:bg-stone-50/60 group-hover:dark:bg-[#09090b]/70 transition-colors duration-300" />
+              </div>
 
-          </div>
+              <div className="flex items-center justify-between z-10">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-stone-500 dark:text-zinc-400 group-hover:text-stone-700 dark:group-hover:text-zinc-200 transition-colors">Haifa Local · Live Clock</span>
+                </div>
+                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-500 animate-spin-slow transition-colors" />
+              </div>
+              
+              <div className="z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
+                <div className="flex items-baseline gap-2 text-stone-850 dark:text-white font-mono font-black text-5xl md:text-6xl tracking-tight">
+                  <Clock className="w-8 h-8 md:w-10 md:h-10 text-amber-500 dark:text-amber-400 shrink-0" />
+                  <span>{time || "12:00:00"}</span>
+                </div>
+                <p className="text-xs font-mono text-stone-500 dark:text-zinc-400 mt-2 ml-1">Haifa, Israel · timezone UTC+3 🌊</p>
+              </div>
+
+              {/* Surf Conditions */}
+              <div className="z-10 py-3 mt-4 border-y border-stone-200/40 dark:border-zinc-800/40 space-y-1">
+                <span className="text-[10px] font-mono uppercase text-amber-600 dark:text-amber-400 font-bold block">Surf & Weather Vibe</span>
+                <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-mono text-stone-600 dark:text-zinc-400 group-hover:text-stone-850 dark:group-hover:text-zinc-200 transition-colors">
+                  <span className="flex items-center gap-1">🏄‍♂️ Swell: 0.8m @ 7s</span>
+                  <span className="flex items-center gap-1">💨 Wind: 6kt Offshore</span>
+                  <span className="flex items-center gap-1">🌡️ Sea Temp: 22°C</span>
+                </div>
+              </div>
+              
+              <div className="pt-4 z-10 flex items-center justify-between border-t border-stone-200/20 dark:border-zinc-800/20">
+                <p className="text-sm md:text-base italic font-serif text-stone-700 dark:text-zinc-300 group-hover:text-stone-900 group-hover:dark:text-white transition-colors leading-snug animate-wave">
+                  &ldquo;Surfer by day, Software Engineer by night.&rdquo;
+                </p>
+                <span className="text-[10px] text-stone-400 dark:text-zinc-500 font-mono hidden sm:inline">Med Sea 🌊</span>
+              </div>
+            </div>
+
+            </div>
         </section>
 
         <div className="sep" />
