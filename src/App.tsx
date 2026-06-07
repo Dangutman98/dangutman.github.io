@@ -92,9 +92,10 @@ const certifications: Certification[] = [
 const projects: Project[] = [
   {
     title: "Secure Botanical AI Agent",
-    description: "A fully containerised DevOps system provisioning local cloud infrastructure via LocalStack and Terraform. Orchestrates sandboxed microservices with Docker Compose and exposes a secure LLM agent API. Features secrets rotation, isolated bridge networks, and mock AWS S3/SSM storage.",
-    tags: ["Terraform", "Docker Compose", "LocalStack", "IaC", "LLM Security"],
+    description: "Designed a serverless RAG application utilizing Groq LLMs and Pinecone vector search, implementing a hybrid search engine (semantic vectors fused with local BM25) deployed via containerized Docker services on AWS Lambda.",
+    tags: ["AWS Lambda", "Pinecone", "Groq LLM", "Docker", "Hybrid Search", "Serverless RAG"],
     icon: <Shield className="w-5 h-5 text-emerald-500" />,
+    href: "https://github.com/Dangutman98/botanical-agent",
   },
   {
     title: "AWS Secure VPC Architecture",
@@ -293,7 +294,7 @@ function ThemeToggle({ theme, onToggle }: { theme: "light" | "dark"; onToggle: (
 // ─── Main App ────────────────────────────────────────────────────────────────
 function getInitialTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
-  return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+  return localStorage.getItem("dan_theme") === "dark" ? "dark" : "light";
 }
 
 export default function App() {
@@ -320,7 +321,7 @@ export default function App() {
     const root = document.documentElement;
     if (theme === "dark") root.classList.add("dark");
     else root.classList.remove("dark");
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("dan_theme", theme);
   }, [theme]);
 
   // Clock Hook (Haifa time)
@@ -509,7 +510,7 @@ export default function App() {
 
             {/* Terminal Card (spans 2 cols, 2 rows) */}
             <div 
-              className="bento-card md:col-span-2 md:row-span-2 bg-[#050508] dark:bg-[#030305] border-zinc-800 dark:border-zinc-900/60 p-4 flex flex-col justify-between min-h-[360px]"
+              className="bento-card terminal-card md:col-span-2 md:row-span-2 p-4 flex flex-col justify-between min-h-[360px]"
               onClick={() => terminalInputRef.current?.focus()}
             >
               {/* titlebar */}
