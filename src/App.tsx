@@ -18,9 +18,7 @@ import {
   Clock,
   Compass,
   Cpu,
-  ArrowRight,
-  Database,
-  Lock
+  ArrowRight
 } from "lucide-react";
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -154,57 +152,9 @@ const skillCategories = [
 
 
 // ─── AWS Architecture visualizer configurations ─────────────────────────────
-interface AWSComponent {
-  id: string;
-  name: string;
-  role: string;
-  iac: string;
-  detail: string;
-  icon: React.ReactNode;
-}
 
-const awsComponents: AWSComponent[] = [
-  {
-    id: "vpc",
-    name: "Hardened VPC",
-    role: "Network Isolation",
-    iac: "CloudFormation / Terraform",
-    detail: "Segmented into public and private subnets across multiple availability zones. Configured with strict internet gateways and secure route tables to block ingress traffic to internal systems.",
-    icon: <Globe2 className="w-5 h-5 text-amber-500" />
-  },
-  {
-    id: "bastion",
-    name: "Bastion Host",
-    role: "Secure Access Gateway",
-    iac: "Terraform AWS Provider",
-    detail: "Hardened EC2 instance housed in the public subnet. Acts as a secure proxy gateway for SSH admin traffic. Restricted strictly by IP lockouts and security group rules.",
-    icon: <Lock className="w-5 h-5 text-rose-500" />
-  },
-  {
-    id: "rds-proxy",
-    name: "RDS Proxy",
-    role: "DB Connection Pooler",
-    iac: "CloudFormation Template",
-    detail: "Maintains active connection pools to the RDS database. Enhances system resilience during traffic spikes and safeguards database credentials via AWS Secrets Manager integration.",
-    icon: <Cpu className="w-5 h-5 text-amber-500" />
-  },
-  {
-    id: "database",
-    name: "RDS Database",
-    role: "Data Persistence Layer",
-    iac: "Terraform PostgreSQL/MySQL",
-    detail: "Multi-AZ database deployed inside fully private subnets. Blocked from direct internet access. Configured with automatic daily snapshots and encrypted storage volumes.",
-    icon: <Database className="w-5 h-5 text-emerald-500" />
-  },
-  {
-    id: "nacls",
-    name: "NACLs & SGs",
-    role: "Security Firewalls",
-    iac: "IaC Security Policies",
-    detail: "Layered network access control lists (stateless) and security groups (stateful). Implements a strict least-privilege model allowing traffic only on dedicated required ports.",
-    icon: <Shield className="w-5 h-5 text-violet-500" />
-  }
-];
+
+
 
 // ─── Sub-Components ──────────────────────────────────────────────────────────
 function ThemeToggle({ theme, onToggle }: { theme: "light" | "dark"; onToggle: () => void }) {
@@ -232,8 +182,7 @@ export default function App() {
 
 
 
-  // AWS Visualizer state
-  const [selectedAwsComp, setSelectedAwsComp] = useState<AWSComponent>(awsComponents[0]);
+
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -266,7 +215,6 @@ export default function App() {
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
     { label: "Education", href: "#education" },
-    { label: "Architecture", href: "#architecture" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -513,38 +461,10 @@ export default function App() {
               </div>
             </div>
 
-            {/* Certifications Widget (1x1) */}
-            <div className="bento-card p-5 flex flex-col justify-between aspect-square">
-              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2">
-                <BadgeCheck className="w-5 h-5 text-emerald-500" />
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">Badges</span>
-              </div>
-              <div className="space-y-2.5 my-2">
-                <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
-                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS Academy Graduate</span>
-                  <span className="text-[9px] text-stone-400">Cloud Developing · Jan 26</span>
-                </div>
-                <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
-                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS CloudFormation</span>
-                  <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS Networking</span>
-                  <span className="text-[9px] text-stone-400">Fundamentals · Mar 26</span>
-                </div>
-              </div>
-              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 text-center">
-                <a
-                  href="#education"
-                  className="text-[9px] font-mono font-bold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-0.5"
-                >
-                  All {certifications.length} credentials →
-                </a>
-              </div>
-            </div>
+            
 
-            {/* IDF Combat Service Widget (1x1) */}
-            <div className="bento-card p-5 flex flex-col justify-between aspect-square">
+            {/* IDF Combat Service Widget (2x1) */}
+            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
               <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2">
                 <Shield className="w-5 h-5 text-rose-500" />
                 <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">IDF Service</span>
@@ -589,7 +509,7 @@ export default function App() {
         <div className="sep" />
 
         {/* ── Section 4: Education & Certs ───────────────────────────────── */}
-        <section id="education" className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <section id="education" className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Ruppin B.Sc. card */}
           <div className="bento-card p-6 lg:col-span-2 space-y-6">
@@ -680,169 +600,6 @@ export default function App() {
             </div>
           </div>
 
-        </section>
-
-        <div className="sep" />
-
-        {/* ── Section 2: Interactive AWS Architecture Visualizer ───────────── */}
-        <section id="architecture" className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Interactive AWS Visualizer</h2>
-            <p className="text-sm text-stone-600 dark:text-zinc-400">
-              Hover or click elements in the VPC layout below to see the specific IaC configurations and security roles I applied to this setup.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            
-            {/* Visualizer canvas */}
-            <div className="bento-card p-6 lg:col-span-2 bg-[#fafafc] dark:bg-[#060608] min-h-[380px] flex flex-col justify-center border-stone-200/70 dark:border-zinc-800/80">
-              
-              {/* Outer border representing internet / public router */}
-              <div className="border border-dashed border-stone-300 dark:border-zinc-800 p-4 rounded-xl space-y-4">
-                <div className="flex items-center justify-between text-[10px] font-mono text-stone-400">
-                  <span>OUTSIDE INTERNET</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                </div>
-
-                {/* VPC Boundary */}
-                <div className="border-2 border-stone-300 dark:border-zinc-800 p-6 rounded-2xl bg-white dark:bg-[#0b0b0e] space-y-6 shadow-sm">
-                  <div className="flex items-center justify-between text-[11px] font-mono font-bold text-amber-500">
-                    <span>AWS VPC (10.0.0.0/16)</span>
-                    <Globe2 className="w-4 h-4 animate-spin-slow" />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                    {/* Public Subnet */}
-                    <div className="border border-stone-200 dark:border-zinc-800/80 bg-stone-50/50 dark:bg-zinc-900/20 p-4 rounded-xl space-y-3">
-                      <div className="text-[10px] font-mono text-indigo-500 font-bold">Public Subnet (DMZ)</div>
-                      
-                      <button
-                        onClick={() => setSelectedAwsComp(awsComponents.find(c => c.id === "bastion")!)}
-                        className={`w-full flex items-center justify-between p-3 rounded-lg border text-left transition-all ${
-                          selectedAwsComp.id === "bastion"
-                            ? "bg-amber-500/10 border-amber-500/60 shadow-sm shadow-amber-500/10"
-                            : "bg-white dark:bg-zinc-900/40 border-stone-200 dark:border-zinc-800/60 hover:border-amber-500/30"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <Lock className="w-4.5 h-4.5 text-rose-500" />
-                          <span className="text-xs font-bold">Bastion EC2 Host</span>
-                        </div>
-                        <ArrowRight className="w-3.5 h-3.5 opacity-55" />
-                      </button>
-                    </div>
-
-                    {/* Private Subnet */}
-                    <div className="border border-stone-200 dark:border-zinc-800/80 bg-stone-50/50 dark:bg-zinc-900/20 p-4 rounded-xl space-y-3">
-                      <div className="text-[10px] font-mono text-emerald-500 font-bold">Private Subnet (Isolated)</div>
-                      
-                      <button
-                        onClick={() => setSelectedAwsComp(awsComponents.find(c => c.id === "rds-proxy")!)}
-                        className={`w-full flex items-center justify-between p-3 rounded-lg border text-left transition-all ${
-                          selectedAwsComp.id === "rds-proxy"
-                            ? "bg-amber-500/10 border-amber-500/60 shadow-sm shadow-amber-500/10"
-                            : "bg-white dark:bg-zinc-900/40 border-stone-200 dark:border-zinc-800/60 hover:border-amber-500/30"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <Cpu className="w-4.5 h-4.5 text-amber-500" />
-                          <span className="text-xs font-bold">RDS Proxy Pool</span>
-                        </div>
-                        <ArrowRight className="w-3.5 h-3.5 opacity-55" />
-                      </button>
-
-                      <button
-                        onClick={() => setSelectedAwsComp(awsComponents.find(c => c.id === "database")!)}
-                        className={`w-full flex items-center justify-between p-3 rounded-lg border text-left transition-all ${
-                          selectedAwsComp.id === "database"
-                            ? "bg-amber-500/10 border-amber-500/60 shadow-sm shadow-amber-500/10"
-                            : "bg-white dark:bg-zinc-900/40 border-stone-200 dark:border-zinc-800/60 hover:border-amber-500/30"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <Database className="w-4.5 h-4.5 text-emerald-500" />
-                          <span className="text-xs font-bold">RDS PostgreSQL</span>
-                        </div>
-                        <ArrowRight className="w-3.5 h-3.5 opacity-55" />
-                      </button>
-                    </div>
-
-                  </div>
-
-                  {/* Network Controls */}
-                  <div className="flex justify-center gap-3 pt-2">
-                    <button
-                      onClick={() => setSelectedAwsComp(awsComponents.find(c => c.id === "vpc")!)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold ${
-                        selectedAwsComp.id === "vpc"
-                          ? "bg-amber-500/10 border-amber-500/60"
-                          : "bg-white dark:bg-zinc-900/40 border-stone-200 dark:border-zinc-800/60 hover:border-amber-500/30"
-                      }`}
-                    >
-                      <Globe2 className="w-3.5 h-3.5" />
-                      VPC Routing
-                    </button>
-                    <button
-                      onClick={() => setSelectedAwsComp(awsComponents.find(c => c.id === "nacls")!)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold ${
-                        selectedAwsComp.id === "nacls"
-                          ? "bg-amber-500/10 border-amber-500/60"
-                          : "bg-white dark:bg-zinc-900/40 border-stone-200 dark:border-zinc-800/60 hover:border-amber-500/30"
-                      }`}
-                    >
-                      <Shield className="w-3.5 h-3.5" />
-                      Firewall (NACLs)
-                    </button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            {/* Component Detail Sidebar */}
-            <div className="bento-card p-6 min-h-[380px] flex flex-col justify-between border-stone-200/80 dark:border-zinc-800/80">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-xl bg-stone-100 dark:bg-zinc-900 text-amber-500 shrink-0">
-                    {selectedAwsComp.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-stone-900 dark:text-white">{selectedAwsComp.name}</h3>
-                    <p className="text-[10px] font-mono tracking-widest uppercase text-stone-400 dark:text-zinc-500">
-                      {selectedAwsComp.role}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="sep" />
-
-                <div className="space-y-2">
-                  <span className="text-[10px] font-mono uppercase text-amber-600 dark:text-amber-400 font-bold block">
-                    IaC Provisioning
-                  </span>
-                  <p className="font-mono text-xs text-stone-800 dark:text-zinc-300 bg-stone-100 dark:bg-zinc-900/60 p-2 rounded border border-stone-200/50 dark:border-zinc-800/50">
-                    {selectedAwsComp.iac}
-                  </p>
-                </div>
-
-                <div className="space-y-2 pt-2">
-                  <span className="text-[10px] font-mono uppercase text-stone-400 dark:text-zinc-500 block">
-                    Configuration details
-                  </span>
-                  <p className="text-xs text-stone-600 dark:text-zinc-400 leading-relaxed">
-                    {selectedAwsComp.detail}
-                  </p>
-                </div>
-              </div>
-
-              <div className="text-[10px] text-stone-400 font-mono text-right mt-6">
-                Active Component: {selectedAwsComp.id}
-              </div>
-            </div>
-
-          </div>
         </section>
 
         <div className="sep" />
