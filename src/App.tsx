@@ -161,7 +161,7 @@ interface TerminalLine {
 
 const COMMANDS: Record<string, TerminalLine[]> = {
   help: [
-    { type: "output", text: "Available commands:", color: "text-amber-500 dark:text-amber-400 font-semibold" },
+    { type: "output", text: "Available commands:", color: "text-amber-600 dark:text-amber-400 font-semibold" },
     { type: "output", text: "  whoami      — about Dan Gutman" },
     { type: "output", text: "  skills      — core technology matrix" },
     { type: "output", text: "  projects    — featured code repositories" },
@@ -172,17 +172,17 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { type: "blank", text: "" },
   ],
   whoami: [
-    { type: "output", text: "┌─ dan-gutman@workstation ────────────────────────────┐", color: "text-stone-400 dark:text-zinc-600" },
+    { type: "output", text: "┌─ dan-gutman@workstation ────────────────────────────┐", color: "text-stone-400 dark:text-zinc-500" },
     { type: "output", text: "│  Role    : Computer Science Graduate                │" },
     { type: "output", text: "│  Focus   : Backend · Cloud · AI · DevOps            │" },
     { type: "output", text: "│  Location: Haifa, Israel 🌊                          │" },
     { type: "output", text: "│  Status  : Open for entry-level roles & internships  │" },
     { type: "output", text: "│  Reserve : IDF Combat Soldier (Tzanhanim Unit)      │" },
-    { type: "output", text: "└─────────────────────────────────────────────────────┘", color: "text-stone-400 dark:text-zinc-600" },
+    { type: "output", text: "└─────────────────────────────────────────────────────┘", color: "text-stone-400 dark:text-zinc-500" },
     { type: "blank", text: "" },
   ],
   skills: [
-    { type: "output", text: "$ cat skills.json", color: "text-emerald-500" },
+    { type: "output", text: "$ cat skills.json", color: "text-emerald-600 dark:text-emerald-400" },
     { type: "output", text: "{" },
     { type: "output", text: '  "cloud"     : ["AWS (EC2, S3, RDS, CloudWatch)", "GCP"],' },
     { type: "output", text: '  "iac"       : ["Terraform", "CloudFormation"],' },
@@ -193,15 +193,15 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { type: "blank", text: "" },
   ],
   projects: [
-    { type: "output", text: "$ ls -la ~/projects", color: "text-amber-500" },
-    { type: "output", text: "drwxr-xr-x  botanical-ai-agent (LocalStack & Terraform)" },
+    { type: "output", text: "$ ls -la ~/projects", color: "text-amber-600 dark:text-amber-500" },
+    { type: "output", text: "drwxr-xr-x  botanical-ai-agent (Serverless RAG & Docker)" },
     { type: "output", text: "drwxr-xr-x  secure-vpc-architecture (CloudFormation)" },
     { type: "output", text: "drwxr-xr-x  gmail-malicious-email-scorer (Apps Script)" },
     { type: "output", text: "drwxr-xr-x  project-f1-portal (React & ASP.NET Core)" },
     { type: "blank", text: "" },
   ],
   certs: [
-    { type: "output", text: "Verified Badges:", color: "text-emerald-400" },
+    { type: "output", text: "Verified Badges:", color: "text-emerald-600 dark:text-emerald-400" },
     { type: "output", text: "  - AWS CloudFormation (KodeKloud)" },
     { type: "output", text: "  - AWS Networking Fundamentals (KodeKloud)" },
     { type: "output", text: "  - Shell Scripts for Beginners (KodeKloud)" },
@@ -209,14 +209,14 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { type: "blank", text: "" },
   ],
   education: [
-    { type: "output", text: "Ruppin Academic Center", color: "text-amber-500" },
+    { type: "output", text: "Ruppin Academic Center", color: "text-amber-600 dark:text-amber-500" },
     { type: "output", text: "Degree  : B.Sc. Computer Science (Graduate)" },
     { type: "output", text: "Period  : 2022 – 2026" },
     { type: "output", text: "Focus   : Software Systems Development" },
     { type: "blank", text: "" },
   ],
   contact: [
-    { type: "output", text: "$ ping dan@workstation", color: "text-cyan-500" },
+    { type: "output", text: "$ ping dan@workstation", color: "text-cyan-600 dark:text-cyan-500" },
     { type: "output", text: "PING dan — 1 packet transmitted, 1 received 🟢" },
     { type: "output", text: "  Email   : Dangutman.98@gmail.com" },
     { type: "output", text: "  Phone   : +972 54-436-3309" },
@@ -527,18 +527,19 @@ export default function App() {
               {/* logs display */}
               <div 
                 ref={terminalOutputRef}
-                className="flex-1 overflow-y-auto font-mono text-xs leading-5 text-zinc-300 max-h-[220px]"
+                className="flex-1 overflow-y-auto font-mono text-xs leading-5 text-stone-700 dark:text-zinc-300 max-h-[220px]"
               >
                 {terminalLines.map((line, i) => {
                   if (line.type === "blank") return <div key={i} className="h-2" />;
                   if (line.type === "prompt") return (
-                    <div key={i} className="flex gap-1.5 text-zinc-400">
-                      <span className="text-amber-500">❯</span>
+                    <div key={i} className="flex gap-1.5 text-stone-500 dark:text-zinc-400">
+                      <span className="text-amber-600 dark:text-amber-500">❯</span>
                       <span>{line.text}</span>
                     </div>
                   );
+                  const defaultColor = theme === "dark" ? "text-zinc-400" : "text-stone-700";
                   return (
-                    <div key={i} className={`pl-2 ${line.color ?? "text-zinc-400"}`}>
+                    <div key={i} className={`pl-2 ${line.color ?? defaultColor}`}>
                       {line.text}
                     </div>
                   );
@@ -546,7 +547,7 @@ export default function App() {
               </div>
 
               {/* quick tools */}
-              <div className="flex flex-wrap gap-1.5 border-t border-zinc-800/60 pt-3 mt-3">
+              <div className="flex flex-wrap gap-1.5 border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 mt-3">
                 {["whoami", "skills", "projects", "certs", "clear"].map((btnCmd) => (
                   <button
                     key={btnCmd}
@@ -554,7 +555,7 @@ export default function App() {
                       e.stopPropagation();
                       handleTerminalCommand(btnCmd);
                     }}
-                    className="font-mono text-[10px] px-2.5 py-1 rounded bg-zinc-900 text-zinc-400 border border-zinc-800 hover:border-amber-500/40 hover:text-zinc-200 transition-colors"
+                    className="font-mono text-[10px] px-2.5 py-1 rounded bg-stone-100/80 dark:bg-zinc-900 text-stone-600 dark:text-zinc-400 border border-stone-200 dark:border-zinc-800 hover:border-amber-600/40 dark:hover:border-amber-500/40 hover:text-stone-900 dark:hover:text-zinc-200 transition-colors cursor-pointer"
                   >
                     {btnCmd}
                   </button>
@@ -562,8 +563,8 @@ export default function App() {
               </div>
 
               {/* command input */}
-              <div className="flex items-center gap-2 mt-3 pt-2 border-t border-zinc-800/40">
-                <span className="text-amber-500 font-mono text-xs">❯</span>
+              <div className="flex items-center gap-2 mt-3 pt-2 border-t border-stone-200/60 dark:border-zinc-800/40">
+                <span className="text-amber-600 dark:text-amber-500 font-mono text-xs">❯</span>
                 <input
                   ref={terminalInputRef}
                   type="text"
@@ -571,12 +572,12 @@ export default function App() {
                   onChange={(e) => setTerminalInput(e.target.value)}
                   onKeyDown={handleTerminalKey}
                   placeholder='type command... (e.g. "help")'
-                  className="flex-1 bg-transparent font-mono text-xs text-white placeholder-zinc-700 outline-none caret-amber-500"
+                  className="flex-1 bg-transparent font-mono text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-zinc-700 outline-none caret-amber-600 dark:caret-amber-500"
                   autoComplete="off"
                   autoCapitalize="off"
                   spellCheck={false}
                 />
-                <span className="cursor-blink text-amber-500 font-mono select-none">▌</span>
+                <span className="cursor-blink text-amber-600 dark:text-amber-500 font-mono select-none">▌</span>
               </div>
             </div>
 
