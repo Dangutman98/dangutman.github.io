@@ -88,8 +88,8 @@ const certifications: Certification[] = [
 const projects: Project[] = [
   {
     title: "Secure Botanical AI Agent",
-    description: "Designed a serverless RAG application utilizing Groq LLMs and Pinecone vector search, implementing a hybrid search engine (semantic vectors fused with local BM25) deployed via containerized Docker services on AWS Lambda.",
-    tags: ["AWS Lambda", "Pinecone", "Groq LLM", "Docker", "Hybrid Search", "Serverless RAG"],
+    description: "Engineered a serverless, hybrid RAG pipeline utilizing Groq LLMs and Pinecone. Blended dense semantic search (multilingual-e5-small) with local BM25 using Reciprocal Rank Fusion (RRF), featuring local ONNX WASM inference fallback, Docker containerization on AWS Lambda, and Terraform IaC.",
+    tags: ["AWS Lambda", "Pinecone", "Groq LLM", "RRF Hybrid Search", "ONNX WASM", "Terraform"],
     icon: <Shield className="w-5 h-5 text-emerald-500" />,
     href: "https://github.com/Dangutman98/botanical-agent",
   },
@@ -135,8 +135,8 @@ const coursework = [
 
 const skillCategories = [
   { title: "Infrastructure & Tools", detail: "Linux, AWS, GCP, CloudFormation, Terraform, Docker" },
-  { title: "AI & Developer Tools", detail: "Cursor IDE, Open Code, Prompt Engineering" },
-  { title: "Databases", detail: "MySQL, Amazon RDS, Firebase" },
+  { title: "AI & GenAI Systems", detail: "Hybrid RAG, Pinecone Vector DB, BM25, RRF, ONNX (WASM), Groq/HF APIs" },
+  { title: "Databases & Storage", detail: "MySQL, Amazon RDS, Pinecone, Firebase" },
   { title: "Programming", detail: "Python, Bash, JavaScript, TypeScript, React, Java, C#" },
   { title: "Languages", detail: "Hebrew - Native, English - Proficient, Russian - Proficient" },
 ];
@@ -293,7 +293,7 @@ export default function App() {
                 </h2>
                 
                 <p className="mt-6 text-sm text-stone-600 dark:text-zinc-400 leading-relaxed max-w-md">
-                  Software Engineer and Computer Science graduate with experience in backend environments and system automation. Skilled in Python, Bash, and Linux internals, with a proven ability to develop test scripts and robust CI/CD pipelines. Proactive problem solver who integrates AI tools to ensure system stability, dedicated to delivering production-ready and resilient technology.
+                  Software Engineer and Computer Science graduate specializing in backend development, system automation, and AI/GenAI engineering. Experienced in building serverless RAG systems, developing automated testing scripts (Python, Bash), and deploying containerized services on AWS. Dedicated to delivering production-ready, resilient software pipelines and integrating modern AI technologies.
                 </p>
               </div>
 
@@ -479,12 +479,13 @@ export default function App() {
                 <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400">Primary Stack</h3>
                 <Cpu className="w-4 h-4 text-amber-500" />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
                   { name: "Backend Systems", details: "Node.js · Python · Java · C#", icon: "💻" },
                   { name: "Cloud & IaC", details: "AWS · GCP · Terraform", icon: "☁️" },
                   { name: "Containers", details: "Docker · Compose", icon: "🐳" },
-                  { name: "Automation", details: "Bash · Linux · Scripting", icon: "⚙️" }
+                  { name: "Automation", details: "Bash · Linux · Scripting", icon: "⚙️" },
+                  { name: "AI & GenAI", details: "RAG · LLMs · Pinecone · ONNX", icon: "🧠" }
                 ].map((stack) => (
                   <div key={stack.name} className="p-3 rounded-xl bg-stone-100/50 dark:bg-zinc-900/40 border border-stone-200/40 dark:border-zinc-800/40 hover:-translate-y-0.5 transition-all">
                     <span className="text-base">{stack.icon}</span>
@@ -603,7 +604,7 @@ export default function App() {
             </span>
             <h2 className="text-3xl font-extrabold tracking-tight">Let&apos;s Connect</h2>
             <p className="text-sm text-stone-600 dark:text-zinc-400">
-              Open to entry-level software engineering, backend, cloud database, or automation roles. Also open to summer internships.
+              Open to entry-level software engineering, backend, cloud database, AI engineering/development, or automation roles. Also open to summer internships.
             </p>
           </div>
 
