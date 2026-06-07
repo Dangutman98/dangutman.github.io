@@ -292,8 +292,8 @@ function ThemeToggle({ theme, onToggle }: { theme: "light" | "dark"; onToggle: (
 
 // ─── Main App ────────────────────────────────────────────────────────────────
 function getInitialTheme(): "light" | "dark" {
-  if (typeof window === "undefined") return "dark";
-  return localStorage.getItem("theme") === "light" ? "light" : "dark";
+  if (typeof window === "undefined") return "light";
+  return localStorage.getItem("theme") === "dark" ? "dark" : "light";
 }
 
 export default function App() {
@@ -479,7 +479,7 @@ export default function App() {
                   <Award className="w-5 h-5 text-amber-500" />
                 </div>
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight">
-                  <span className="gradient-text font-serif italic font-normal mr-2">Hi, I&apos;m</span>
+                  <span className="gradient-text font-heading mr-2">Hi, I&apos;m</span>
                   Dan Gutman
                 </h1>
                 <h2 className="text-sm font-mono tracking-widest uppercase text-amber-600 dark:text-amber-400 mt-2 font-bold">
@@ -593,7 +593,7 @@ export default function App() {
                 <p className="text-xs text-stone-500 dark:text-zinc-400 mt-2 font-medium">Haifa, Israel 🌊</p>
               </div>
               <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3">
-                <p className="text-[11px] italic font-serif text-stone-600 dark:text-zinc-400 leading-snug animate-wave">
+                <p className="text-[11px] italic font-sans text-stone-600 dark:text-zinc-400 leading-snug animate-wave">
                   &ldquo;Surfer by day, Software Engineer by night.&rdquo;
                 </p>
               </div>
