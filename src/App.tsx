@@ -1,7 +1,6 @@
-import { useLayoutEffect, useState, useEffect, useRef } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import {
   Cloud,
-  Terminal,
   ExternalLink,
   Shield,
   Mail,
@@ -21,7 +20,9 @@ import {
   Cpu,
   ArrowRight,
   Database,
-  Lock
+  Lock,
+  Check,
+  Loader2
 } from "lucide-react";
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -53,6 +54,13 @@ interface Certification {
 
 const certifications: Certification[] = [
   {
+    title: "AWS Academy Graduate — Cloud Developing",
+    issuer: "Amazon Web Services (AWS)",
+    issued: "Jan 2026",
+    verifyUrl: "https://www.credly.com/earner/earned/badge/6c5b9b34-0917-4eb3-9ed7-13b06b2753a2",
+    skills: ["AWS Cloud Computing", "Development"],
+  },
+  {
     title: "AWS CloudFormation",
     issuer: "KodeKloud",
     issued: "Mar 2026",
@@ -72,13 +80,6 @@ const certifications: Certification[] = [
     issued: "Mar 2026",
     verifyUrl: "https://learn.kodekloud.com/certificate/a87ea55c-c7d9-4823-8c93-d13508a899a3",
     skills: ["Bash", "Linux Automation"],
-  },
-  {
-    title: "AWS Academy Graduate — Cloud Developing",
-    issuer: "Amazon Web Services (AWS)",
-    issued: "Jan 2026",
-    verifyUrl: "https://www.credly.com/earner/earned/badge/6c5b9b34-0917-4eb3-9ed7-13b06b2753a2",
-    skills: ["AWS Cloud Computing", "Development"],
   },
   {
     title: "Learning Linux Basics — Course & Labs",
@@ -152,78 +153,7 @@ const skillCategories = [
   { title: "AI & Automation", detail: "AI agents, LLM APIs, automation scripts" },
 ];
 
-// ─── Terminal Data ───────────────────────────────────────────────────────────
-interface TerminalLine {
-  type: "prompt" | "output" | "blank";
-  text: string;
-  color?: string;
-}
 
-const COMMANDS: Record<string, TerminalLine[]> = {
-  help: [
-    { type: "output", text: "Available commands:", color: "text-amber-600 dark:text-amber-400 font-semibold" },
-    { type: "output", text: "  whoami      — about Dan Gutman" },
-    { type: "output", text: "  skills      — core technology matrix" },
-    { type: "output", text: "  projects    — featured code repositories" },
-    { type: "output", text: "  certs       — professional credentials" },
-    { type: "output", text: "  education   — academic credentials" },
-    { type: "output", text: "  contact     — channels to get in touch" },
-    { type: "output", text: "  clear       — clear console log" },
-    { type: "blank", text: "" },
-  ],
-  whoami: [
-    { type: "output", text: "┌─ dan-gutman@workstation ────────────────────────────┐", color: "text-stone-400 dark:text-zinc-500" },
-    { type: "output", text: "│  Role    : Computer Science Graduate                │" },
-    { type: "output", text: "│  Focus   : Backend · Cloud · AI · DevOps            │" },
-    { type: "output", text: "│  Location: Haifa, Israel 🌊                          │" },
-    { type: "output", text: "│  Status  : Open for entry-level roles & internships  │" },
-    { type: "output", text: "│  Reserve : IDF Combat Soldier (Tzanhanim Unit)      │" },
-    { type: "output", text: "└─────────────────────────────────────────────────────┘", color: "text-stone-400 dark:text-zinc-500" },
-    { type: "blank", text: "" },
-  ],
-  skills: [
-    { type: "output", text: "$ cat skills.json", color: "text-emerald-600 dark:text-emerald-400" },
-    { type: "output", text: "{" },
-    { type: "output", text: '  "cloud"     : ["AWS (EC2, S3, RDS, CloudWatch)", "GCP"],' },
-    { type: "output", text: '  "iac"       : ["Terraform", "CloudFormation"],' },
-    { type: "output", text: '  "containers": ["Docker", "Docker Compose"],' },
-    { type: "output", text: '  "backend"   : ["Node.js", "Java", "C#", "Python", "Bash"],' },
-    { type: "output", text: '  "databases" : ["MySQL", "PostgreSQL", "Firebase"]' },
-    { type: "output", text: "}" },
-    { type: "blank", text: "" },
-  ],
-  projects: [
-    { type: "output", text: "$ ls -la ~/projects", color: "text-amber-600 dark:text-amber-500" },
-    { type: "output", text: "drwxr-xr-x  botanical-ai-agent (Serverless RAG & Docker)" },
-    { type: "output", text: "drwxr-xr-x  secure-vpc-architecture (CloudFormation)" },
-    { type: "output", text: "drwxr-xr-x  gmail-malicious-email-scorer (Apps Script)" },
-    { type: "output", text: "drwxr-xr-x  project-f1-portal (React & ASP.NET Core)" },
-    { type: "blank", text: "" },
-  ],
-  certs: [
-    { type: "output", text: "Verified Badges:", color: "text-emerald-600 dark:text-emerald-400" },
-    { type: "output", text: "  - AWS CloudFormation (KodeKloud)" },
-    { type: "output", text: "  - AWS Networking Fundamentals (KodeKloud)" },
-    { type: "output", text: "  - Shell Scripts for Beginners (KodeKloud)" },
-    { type: "output", text: "  - AWS Academy Graduate (AWS)" },
-    { type: "blank", text: "" },
-  ],
-  education: [
-    { type: "output", text: "Ruppin Academic Center", color: "text-amber-600 dark:text-amber-500" },
-    { type: "output", text: "Degree  : B.Sc. Computer Science (Graduate)" },
-    { type: "output", text: "Period  : 2022 – 2026" },
-    { type: "output", text: "Focus   : Software Systems Development" },
-    { type: "blank", text: "" },
-  ],
-  contact: [
-    { type: "output", text: "$ ping dan@workstation", color: "text-cyan-600 dark:text-cyan-500" },
-    { type: "output", text: "PING dan — 1 packet transmitted, 1 received 🟢" },
-    { type: "output", text: "  Email   : Dangutman.98@gmail.com" },
-    { type: "output", text: "  Phone   : +972 54-436-3309" },
-    { type: "output", text: "  LinkedIn: linkedin.com/in/dan-gutman-0b4334228" },
-    { type: "blank", text: "" },
-  ],
-};
 
 // ─── AWS Architecture visualizer configurations ─────────────────────────────
 interface AWSComponent {
@@ -302,17 +232,45 @@ export default function App() {
   const [time, setTime] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Terminal state
-  const [terminalLines, setTerminalLines] = useState<TerminalLine[]>([
-    { type: "output", text: "dan-gutman-shell v1.2.0 (Graduate)", color: "text-amber-500 dark:text-amber-400" },
-    { type: "output", text: 'Type "help" to see capabilities.' },
-    { type: "blank", text: "" },
-  ]);
-  const [terminalInput, setTerminalInput] = useState("");
-  const [terminalHistory, setTerminalHistory] = useState<string[]>([]);
-  const [terminalHistIdx, setTerminalHistIdx] = useState(-1);
-  const terminalInputRef = useRef<HTMLInputElement>(null);
-  const terminalOutputRef = useRef<HTMLDivElement>(null);
+  // Pipeline Simulator state
+  const [pipelineState, setPipelineState] = useState<"idle" | "running" | "success">("idle");
+  const [currentStep, setCurrentStep] = useState(-1);
+  const [pipelineLogs, setPipelineLogs] = useState<string[]>([]);
+
+  const runPipeline = () => {
+    if (pipelineState === "running") return;
+    setPipelineState("running");
+    setCurrentStep(0);
+    setPipelineLogs(["❯ initializing deploy pipeline..."]);
+
+    const logs = [
+      "❯ cloning repository Dangutman98/botanical-agent...",
+      "✔ repository cloned successfully [1.2s]",
+      "❯ running linter & security scans...",
+      "✔ lint & vulnerability scans passed [0.8s]",
+      "❯ executing unit tests...",
+      "✔ all 14 tests passed successfully [1.1s]",
+      "❯ provision cloud resources via terraform...",
+      "✔ aws infrastructure updated. 4 resources modified [1.4s]",
+      "❯ deploy containerized service to aws lambda...",
+      "✔ lambda function updated. vercel routing active [1.0s]",
+      "🎉 DEPLOYMENT SUCCESSFUL! prod environment live. lighthouse: 100/100 🚀"
+    ];
+
+    let logIdx = 0;
+    const interval = setInterval(() => {
+      if (logIdx < logs.length) {
+        setPipelineLogs(prev => [...prev, logs[logIdx]]);
+        if (logs[logIdx].startsWith("✔") || logs[logIdx].startsWith("🎉")) {
+          setCurrentStep(prev => prev + 1);
+        }
+        logIdx++;
+      } else {
+        clearInterval(interval);
+        setPipelineState("success");
+      }
+    }, 650);
+  };
 
   // AWS Visualizer state
   const [selectedAwsComp, setSelectedAwsComp] = useState<AWSComponent>(awsComponents[0]);
@@ -340,60 +298,6 @@ export default function App() {
     const interval = setInterval(updateHaifaTime, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  // Terminal scroll to bottom
-  useEffect(() => {
-    if (terminalOutputRef.current) {
-      terminalOutputRef.current.scrollTop = terminalOutputRef.current.scrollHeight;
-    }
-  }, [terminalLines]);
-
-  const handleTerminalCommand = (cmdStr: string) => {
-    const trimmed = cmdStr.trim().toLowerCase();
-    const promptLine: TerminalLine = { type: "prompt", text: cmdStr };
-
-    if (!trimmed) {
-      setTerminalLines((prev) => [...prev, promptLine, { type: "blank", text: "" }]);
-      return;
-    }
-
-    setTerminalHistory((h) => [cmdStr, ...h]);
-    setTerminalHistIdx(-1);
-
-    if (trimmed === "clear") {
-      setTerminalLines([]);
-      return;
-    }
-
-    const commandResult = COMMANDS[trimmed];
-    if (commandResult) {
-      setTerminalLines((prev) => [...prev, promptLine, ...commandResult]);
-    } else {
-      setTerminalLines((prev) => [
-        ...prev,
-        promptLine,
-        { type: "output", text: `Command not found: ${trimmed}. Type "help" for options.`, color: "text-rose-400" },
-        { type: "blank", text: "" },
-      ]);
-    }
-  };
-
-  const handleTerminalKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleTerminalCommand(terminalInput);
-      setTerminalInput("");
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      const nextIdx = Math.min(terminalHistIdx + 1, terminalHistory.length - 1);
-      setTerminalHistIdx(nextIdx);
-      setTerminalInput(terminalHistory[nextIdx] ?? "");
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const nextIdx = Math.max(terminalHistIdx - 1, -1);
-      setTerminalHistIdx(nextIdx);
-      setTerminalInput(nextIdx === -1 ? "" : terminalHistory[nextIdx]);
-    }
-  };
 
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
@@ -556,80 +460,7 @@ export default function App() {
             </div>
 
 
-            {/* Terminal Card (spans 2 cols, 2 rows) */}
-            <div 
-              className="bento-card terminal-card bg-white/70 dark:bg-zinc-900/60 border-stone-200/60 dark:border-zinc-800/60 md:col-span-2 md:row-span-2 p-4 flex flex-col justify-between min-h-[360px]"
-              onClick={() => terminalInputRef.current?.focus()}
-            >
-              {/* titlebar */}
-              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/40 pb-3 mb-3">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                  <span className="ml-2.5 font-mono text-[11px] text-stone-400 dark:text-zinc-500">dan@workstation:~</span>
-                </div>
-                <Terminal className="w-4 h-4 text-stone-400 dark:text-zinc-500" />
-              </div>
-
-              {/* logs display */}
-              <div 
-                ref={terminalOutputRef}
-                className="flex-1 overflow-y-auto font-mono text-xs leading-5 text-stone-700 dark:text-zinc-300 max-h-[220px]"
-              >
-                {terminalLines.map((line, i) => {
-                  if (line.type === "blank") return <div key={i} className="h-2" />;
-                  if (line.type === "prompt") return (
-                    <div key={i} className="flex gap-1.5 text-stone-500 dark:text-zinc-400">
-                      <span className="text-amber-600 dark:text-amber-500">❯</span>
-                      <span>{line.text}</span>
-                    </div>
-                  );
-                  const defaultColor = theme === "dark" ? "text-zinc-400" : "text-stone-700";
-                  return (
-                    <div key={i} className={`pl-2 ${line.color ?? defaultColor}`}>
-                      {line.text}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* quick tools */}
-              <div className="flex flex-wrap gap-1.5 border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 mt-3">
-                {["whoami", "skills", "projects", "certs", "clear"].map((btnCmd) => (
-                  <button
-                    key={btnCmd}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleTerminalCommand(btnCmd);
-                    }}
-                    className="font-mono text-[10px] px-2.5 py-1 rounded bg-stone-100/80 dark:bg-zinc-900 text-stone-600 dark:text-zinc-400 border border-stone-200 dark:border-zinc-800 hover:border-amber-600/40 dark:hover:border-amber-500/40 hover:text-stone-900 dark:hover:text-zinc-200 transition-colors cursor-pointer"
-                  >
-                    {btnCmd}
-                  </button>
-                ))}
-              </div>
-
-              {/* command input */}
-              <div className="flex items-center gap-2 mt-3 pt-2 border-t border-stone-200/60 dark:border-zinc-800/40">
-                <span className="text-amber-600 dark:text-amber-500 font-mono text-xs">❯</span>
-                <input
-                  ref={terminalInputRef}
-                  type="text"
-                  value={terminalInput}
-                  onChange={(e) => setTerminalInput(e.target.value)}
-                  onKeyDown={handleTerminalKey}
-                  placeholder='type command... (e.g. "help")'
-                  className="flex-1 bg-transparent font-mono text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-zinc-700 outline-none caret-amber-600 dark:caret-amber-500"
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  spellCheck={false}
-                />
-                <span className="cursor-blink text-amber-600 dark:text-amber-500 font-mono select-none">▌</span>
-              </div>
-            </div>
-
-            {/* Top Project Widget (spans 2 cols, 1 row) */}
+            {/* Featured AI Project Widget (spans 2 cols, 1 row) */}
             <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[170px] group">
               <div>
                 <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2.5">
@@ -672,22 +503,22 @@ export default function App() {
 
             {/* Certifications Widget (1x1) */}
             <div className="bento-card p-5 flex flex-col justify-between aspect-square">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2">
                 <BadgeCheck className="w-5 h-5 text-emerald-500" />
                 <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">Badges</span>
               </div>
               <div className="space-y-2.5 my-2">
                 <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
+                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS Academy Graduate</span>
+                  <span className="text-[9px] text-stone-400">Cloud Developing · Jan 26</span>
+                </div>
+                <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
                   <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS CloudFormation</span>
                   <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
                 </div>
-                <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
-                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS Networking</span>
-                  <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
-                </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">Bash Shell Scripts</span>
-                  <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
+                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS Networking</span>
+                  <span className="text-[9px] text-stone-400">Fundamentals · Mar 26</span>
                 </div>
               </div>
               <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 text-center">
@@ -695,14 +526,14 @@ export default function App() {
                   href="#education"
                   className="text-[9px] font-mono font-bold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-0.5"
                 >
-                  All 5 credentials →
+                  All {certifications.length} credentials →
                 </a>
               </div>
             </div>
 
             {/* IDF Combat Service Widget (1x1) */}
             <div className="bento-card p-5 flex flex-col justify-between aspect-square">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2">
                 <Shield className="w-5 h-5 text-rose-500" />
                 <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">IDF Service</span>
               </div>
@@ -734,8 +565,98 @@ export default function App() {
               </div>
             </div>
 
-            {/* Tech stack widget (2x1) */}
-            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
+            {/* CI/CD Pipeline Simulator Card (spans 2 cols) */}
+            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[200px] bg-zinc-950 text-zinc-100 border-zinc-850 dark:border-zinc-800">
+              <div>
+                <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative flex h-2 w-2">
+                      {pipelineState === "running" && (
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                      )}
+                      <span className={`relative inline-flex rounded-full h-2 w-2 ${
+                        pipelineState === "success" ? "bg-emerald-500" : pipelineState === "running" ? "bg-amber-500" : "bg-zinc-500"
+                      }`}></span>
+                    </span>
+                    <h3 className="font-bold text-xs uppercase tracking-wider text-zinc-400">DevOps CI/CD Pipeline</h3>
+                  </div>
+                  <button
+                    onClick={runPipeline}
+                    disabled={pipelineState === "running"}
+                    className={`text-[10px] font-mono font-bold px-3 py-1 rounded border transition-all cursor-pointer ${
+                      pipelineState === "running"
+                        ? "border-zinc-800 bg-zinc-900 text-zinc-500 cursor-not-allowed"
+                        : "border-amber-500/50 bg-amber-500/15 text-amber-400 hover:bg-amber-500/30 active:scale-95"
+                    }`}
+                  >
+                    {pipelineState === "running" ? "Deploying..." : pipelineState === "success" ? "Run Pipeline Again" : "Trigger Deploy"}
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                  {/* Left Column: Visual Steps */}
+                  <div className="space-y-3">
+                    {[
+                      { name: "Git Checkout", desc: "Sync latest main branch" },
+                      { name: "Security & Lint", desc: "Run linter & security scans" },
+                      { name: "Terraform Apply", desc: "Sync AWS infrastructure" },
+                      { name: "Lambda Release", desc: "Deploy container service" }
+                    ].map((step, idx) => {
+                      let status: "idle" | "running" | "success" = "idle";
+                      if (currentStep > idx) status = "success";
+                      else if (currentStep === idx && pipelineState === "running") status = "running";
+
+                      return (
+                        <div key={step.name} className="flex items-start gap-2.5">
+                          <div className="mt-0.5">
+                            {status === "success" ? (
+                              <Check className="w-3.5 h-3.5 text-emerald-500" />
+                            ) : status === "running" ? (
+                              <Loader2 className="w-3.5 h-3.5 text-amber-500 animate-spin" />
+                            ) : (
+                              <span className="w-3 h-3 rounded-full bg-zinc-800 border border-zinc-700 block mt-0.5" />
+                            )}
+                          </div>
+                          <div>
+                            <p className={`text-[11px] font-bold leading-tight ${
+                              status === "success" ? "text-zinc-200" : status === "running" ? "text-amber-400" : "text-zinc-500"
+                            }`}>{step.name}</p>
+                            <p className="text-[9px] text-zinc-500 leading-tight mt-0.5">{step.desc}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Right Column: Log Output Console */}
+                  <div className="bg-black/40 border border-zinc-900 rounded-lg p-3 font-mono text-[9px] leading-relaxed text-zinc-400 min-h-[130px] max-h-[130px] overflow-y-auto flex flex-col justify-end">
+                    <div className="space-y-1 overflow-y-auto max-h-full">
+                      {pipelineLogs.map((log, i) => {
+                        let color = "text-zinc-400";
+                        if (log.startsWith("✔")) color = "text-emerald-400";
+                        else if (log.startsWith("🎉")) color = "text-amber-400 font-semibold";
+                        else if (log.startsWith("❯")) color = "text-zinc-500";
+                        return (
+                          <div key={i} className={color}>
+                            {log}
+                          </div>
+                        );
+                      })}
+                      {pipelineState === "running" && (
+                        <div className="text-amber-400 animate-pulse text-[9px] mt-0.5">▋ pipeline running...</div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="border-t border-zinc-900 pt-2.5 mt-3 text-[9px] font-mono text-zinc-500 flex justify-between">
+                <span>Console v2.1.0</span>
+                <span>Target: aws-lambda-rag</span>
+              </div>
+            </div>
+
+            {/* Tech stack widget (spans all 4 cols) */}
+            <div className="bento-card p-6 md:col-span-4 flex flex-col justify-between">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400">Primary Stack</h3>
                 <Cpu className="w-4 h-4 text-amber-500" />
@@ -747,7 +668,7 @@ export default function App() {
                   { name: "Containers", details: "Docker · Compose", icon: "🐳" },
                   { name: "Automation", details: "Bash · Linux · Scripting", icon: "⚙️" }
                 ].map((stack) => (
-                  <div key={stack.name} className="p-3 rounded-xl bg-stone-100/50 dark:bg-zinc-900/40 border border-stone-200/40 dark:border-zinc-800/40">
+                  <div key={stack.name} className="p-3 rounded-xl bg-stone-100/50 dark:bg-zinc-900/40 border border-stone-200/40 dark:border-zinc-800/40 hover:-translate-y-0.5 transition-all">
                     <span className="text-base">{stack.icon}</span>
                     <h4 className="font-bold text-xs mt-2 text-stone-800 dark:text-zinc-200">{stack.name}</h4>
                     <p className="text-[10px] text-stone-500 dark:text-zinc-500 mt-0.5">{stack.details}</p>
