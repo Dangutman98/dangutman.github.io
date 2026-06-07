@@ -20,9 +20,7 @@ import {
   Cpu,
   ArrowRight,
   Database,
-  Lock,
-  Check,
-  Loader2
+  Lock
 } from "lucide-react";
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -232,45 +230,7 @@ export default function App() {
   const [time, setTime] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Pipeline Simulator state
-  const [pipelineState, setPipelineState] = useState<"idle" | "running" | "success">("idle");
-  const [currentStep, setCurrentStep] = useState(-1);
-  const [pipelineLogs, setPipelineLogs] = useState<string[]>([]);
 
-  const runPipeline = () => {
-    if (pipelineState === "running") return;
-    setPipelineState("running");
-    setCurrentStep(0);
-    setPipelineLogs(["❯ initializing deploy pipeline..."]);
-
-    const logs = [
-      "❯ cloning repository Dangutman98/botanical-agent...",
-      "✔ repository cloned successfully [1.2s]",
-      "❯ running linter & security scans...",
-      "✔ lint & vulnerability scans passed [0.8s]",
-      "❯ executing unit tests...",
-      "✔ all 14 tests passed successfully [1.1s]",
-      "❯ provision cloud resources via terraform...",
-      "✔ aws infrastructure updated. 4 resources modified [1.4s]",
-      "❯ deploy containerized service to aws lambda...",
-      "✔ lambda function updated. vercel routing active [1.0s]",
-      "🎉 DEPLOYMENT SUCCESSFUL! prod environment live. lighthouse: 100/100 🚀"
-    ];
-
-    let logIdx = 0;
-    const interval = setInterval(() => {
-      if (logIdx < logs.length) {
-        setPipelineLogs(prev => [...prev, logs[logIdx]]);
-        if (logs[logIdx].startsWith("✔") || logs[logIdx].startsWith("🎉")) {
-          setCurrentStep(prev => prev + 1);
-        }
-        logIdx++;
-      } else {
-        clearInterval(interval);
-        setPipelineState("success");
-      }
-    }, 650);
-  };
 
   // AWS Visualizer state
   const [selectedAwsComp, setSelectedAwsComp] = useState<AWSComponent>(awsComponents[0]);
@@ -460,44 +420,18 @@ export default function App() {
             </div>
 
 
-            {/* Featured AI Project Widget (spans 2 cols, 1 row) */}
-            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[170px] group">
+            {/* Full skill matrix summary bento (2x1) */}
+            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2.5">
-                  <div className="flex items-center gap-2.5">
-                    <Shield className="w-5 h-5 text-emerald-500 shrink-0" />
-                    <h3 className="font-bold text-sm text-stone-900 dark:text-white uppercase tracking-wider">Featured AI Project</h3>
-                  </div>
-                  <a 
-                    href="https://github.com/Dangutman98/botanical-agent"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold hover:underline"
-                  >
-                    <span>botanical-agent</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-                
-                <div className="mt-3.5">
-                  <h4 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
-                    Secure Botanical AI Agent
-                  </h4>
-                  <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-1.5 leading-relaxed">
-                    Designed a serverless RAG application utilizing Groq LLMs and Pinecone vector search, implementing a hybrid search engine (semantic vectors fused with local BM25) deployed via containerized Docker services on AWS Lambda.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-stone-200/40 dark:border-zinc-800/40 mt-3.5">
-                {["AWS Lambda", "Pinecone", "Groq LLM", "Docker", "Serverless RAG"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[9px] font-mono px-2 py-0.5 rounded bg-stone-100 dark:bg-zinc-900/60 border border-stone-250/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400 mb-3">Skill Matrix</h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs">
+                  {skillCategories.map((sc) => (
+                    <li key={sc.title} className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-2">
+                      <span className="font-semibold text-stone-800 dark:text-zinc-300">{sc.title}</span>
+                      <span className="text-[11px] text-stone-500 dark:text-zinc-500 mt-0.5">{sc.detail}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -547,111 +481,6 @@ export default function App() {
               <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 flex items-center justify-between">
                 <span className="text-[9px] uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Reservist</span>
                 <span className="text-[9px] text-stone-400">2016 – Pres.</span>
-              </div>
-            </div>
-
-            {/* Full skill matrix summary bento (2x1) */}
-            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
-              <div>
-                <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400 mb-3">Skill Matrix</h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs">
-                  {skillCategories.map((sc) => (
-                    <li key={sc.title} className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-2">
-                      <span className="font-semibold text-stone-800 dark:text-zinc-300">{sc.title}</span>
-                      <span className="text-[11px] text-stone-500 dark:text-zinc-500 mt-0.5">{sc.detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* CI/CD Pipeline Simulator Card (spans 2 cols) */}
-            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[200px] bg-zinc-950 text-zinc-100 border-zinc-850 dark:border-zinc-800">
-              <div>
-                <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
-                  <div className="flex items-center gap-2.5">
-                    <span className="relative flex h-2 w-2">
-                      {pipelineState === "running" && (
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                      )}
-                      <span className={`relative inline-flex rounded-full h-2 w-2 ${
-                        pipelineState === "success" ? "bg-emerald-500" : pipelineState === "running" ? "bg-amber-500" : "bg-zinc-500"
-                      }`}></span>
-                    </span>
-                    <h3 className="font-bold text-xs uppercase tracking-wider text-zinc-400">DevOps CI/CD Pipeline</h3>
-                  </div>
-                  <button
-                    onClick={runPipeline}
-                    disabled={pipelineState === "running"}
-                    className={`text-[10px] font-mono font-bold px-3 py-1 rounded border transition-all cursor-pointer ${
-                      pipelineState === "running"
-                        ? "border-zinc-800 bg-zinc-900 text-zinc-500 cursor-not-allowed"
-                        : "border-amber-500/50 bg-amber-500/15 text-amber-400 hover:bg-amber-500/30 active:scale-95"
-                    }`}
-                  >
-                    {pipelineState === "running" ? "Deploying..." : pipelineState === "success" ? "Run Pipeline Again" : "Trigger Deploy"}
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-                  {/* Left Column: Visual Steps */}
-                  <div className="space-y-3">
-                    {[
-                      { name: "Git Checkout", desc: "Sync latest main branch" },
-                      { name: "Security & Lint", desc: "Run linter & security scans" },
-                      { name: "Terraform Apply", desc: "Sync AWS infrastructure" },
-                      { name: "Lambda Release", desc: "Deploy container service" }
-                    ].map((step, idx) => {
-                      let status: "idle" | "running" | "success" = "idle";
-                      if (currentStep > idx) status = "success";
-                      else if (currentStep === idx && pipelineState === "running") status = "running";
-
-                      return (
-                        <div key={step.name} className="flex items-start gap-2.5">
-                          <div className="mt-0.5">
-                            {status === "success" ? (
-                              <Check className="w-3.5 h-3.5 text-emerald-500" />
-                            ) : status === "running" ? (
-                              <Loader2 className="w-3.5 h-3.5 text-amber-500 animate-spin" />
-                            ) : (
-                              <span className="w-3 h-3 rounded-full bg-zinc-800 border border-zinc-700 block mt-0.5" />
-                            )}
-                          </div>
-                          <div>
-                            <p className={`text-[11px] font-bold leading-tight ${
-                              status === "success" ? "text-zinc-200" : status === "running" ? "text-amber-400" : "text-zinc-500"
-                            }`}>{step.name}</p>
-                            <p className="text-[9px] text-zinc-500 leading-tight mt-0.5">{step.desc}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Right Column: Log Output Console */}
-                  <div className="bg-black/40 border border-zinc-900 rounded-lg p-3 font-mono text-[9px] leading-relaxed text-zinc-400 min-h-[130px] max-h-[130px] overflow-y-auto flex flex-col justify-end">
-                    <div className="space-y-1 overflow-y-auto max-h-full">
-                      {pipelineLogs.map((log, i) => {
-                        let color = "text-zinc-400";
-                        if (log.startsWith("✔")) color = "text-emerald-400";
-                        else if (log.startsWith("🎉")) color = "text-amber-400 font-semibold";
-                        else if (log.startsWith("❯")) color = "text-zinc-500";
-                        return (
-                          <div key={i} className={color}>
-                            {log}
-                          </div>
-                        );
-                      })}
-                      {pipelineState === "running" && (
-                        <div className="text-amber-400 animate-pulse text-[9px] mt-0.5">▋ pipeline running...</div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="border-t border-zinc-900 pt-2.5 mt-3 text-[9px] font-mono text-zinc-500 flex justify-between">
-                <span>Console v2.1.0</span>
-                <span>Target: aws-lambda-rag</span>
               </div>
             </div>
 
