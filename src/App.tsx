@@ -399,9 +399,9 @@ export default function App() {
 
   const navItems = [
     { label: "Overview", href: "#overview" },
-    { label: "Architecture", href: "#architecture" },
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
+    { label: "Architecture", href: "#architecture" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -704,6 +704,164 @@ export default function App() {
 
         <div className="sep" />
 
+        {/* ── Section 3: Projects ─────────────────────────────────────────── */}
+        <section id="projects" className="space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Featured Projects</h2>
+            <p className="text-sm text-stone-600 dark:text-zinc-400">
+              Systems architecture, API integration, and automation tools built during my studies and research.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((proj) => {
+              const cardContent = (
+                <>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-zinc-900 shrink-0">
+                      {proj.icon}
+                    </div>
+                    <h3 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                      {proj.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-stone-600 dark:text-zinc-400 leading-relaxed mb-6 flex-1">
+                    {proj.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-stone-200/50 dark:border-zinc-800/40">
+                    {proj.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 dark:bg-zinc-900/60 border border-stone-200/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              );
+
+              if (proj.href) {
+                return (
+                  <a
+                    key={proj.title}
+                    href={proj.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bento-card p-5 flex flex-col justify-between group cursor-pointer"
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={proj.title} className="bento-card p-5 flex flex-col justify-between">
+                  {cardContent}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <div className="sep" />
+
+        {/* ── Section 4: Education & Certs ───────────────────────────────── */}
+        <section id="education" className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          
+          {/* Ruppin B.Sc. card */}
+          <div className="bento-card p-6 lg:col-span-2 space-y-6">
+            <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-500 shrink-0">
+                  <Award className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="font-bold text-lg text-stone-900 dark:text-white">B.Sc. Computer Science</h2>
+                  <p className="text-xs text-amber-600 dark:text-amber-400 font-semibold font-mono">
+                    Ruppin Academic Center · Graduate (2022 – 2026)
+                  </p>
+                </div>
+              </div>
+              <Globe2 className="w-5 h-5 text-stone-300 dark:text-zinc-600" />
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-stone-400 dark:text-zinc-500">
+                Coursework highlights & grades
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {coursework.map((course) => (
+                  <span
+                    key={course.name}
+                    className="text-xs px-3 py-1 rounded-full bg-stone-100 dark:bg-zinc-900/60 text-stone-600 dark:text-zinc-400 border border-stone-200/50 dark:border-zinc-800/50"
+                  >
+                    {course.name}{" "}
+                    <span className="text-amber-600 dark:text-amber-400 font-bold ml-1">{course.grade}</span>
+                  </span>
+                ))}
+              </div>
+
+              <div className="border-t border-stone-200/30 dark:border-zinc-800/30 pt-4 text-xs text-stone-500 dark:text-zinc-500 space-y-1.5 font-mono">
+                <p>Focus Area: Software Systems Development & Algorithms</p>
+                <p>Languages: Hebrew (Native) · English (Proficient) · Russian (Proficient)</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Certifications Card */}
+          <div className="bento-card p-6 flex flex-col justify-between min-h-[310px]">
+            <div>
+              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4 mb-4">
+                <div className="flex items-center gap-2">
+                  <BadgeCheck className="w-5 h-5 text-emerald-500" />
+                  <h2 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400">Badges</h2>
+                </div>
+                <span className="text-xs font-mono text-stone-400">{certifications.length} Credentials</span>
+              </div>
+
+              <div className="space-y-3.5">
+                {certifications.map((c) => (
+                  <a
+                    key={c.verifyUrl}
+                    href={c.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block p-2.5 rounded-xl bg-stone-50/50 dark:bg-zinc-900/25 border border-stone-200/40 dark:border-zinc-800/40 hover:border-amber-500/40 transition-colors"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="font-bold text-xs text-stone-800 dark:text-zinc-200 leading-snug group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                          {c.title}
+                        </h4>
+                        <p className="text-[10px] text-stone-400 dark:text-zinc-500 mt-0.5">
+                          {c.issuer} · {c.issued}
+                        </p>
+                      </div>
+                      <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-amber-500 transition-colors shrink-0 ml-2" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 pt-3 border-t border-stone-200/60 dark:border-zinc-800/60 text-center">
+              <a
+                href={LINKEDIN_CERT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-600 dark:text-zinc-400 hover:text-amber-500 dark:hover:text-amber-400 transition-colors"
+              >
+                LinkedIn Credentials Directory
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+        </section>
+
+        <div className="sep" />
+
         {/* ── Section 2: Interactive AWS Architecture Visualizer ───────────── */}
         <section id="architecture" className="space-y-6">
           <div className="text-center max-w-2xl mx-auto space-y-2">
@@ -863,164 +1021,6 @@ export default function App() {
             </div>
 
           </div>
-        </section>
-
-        <div className="sep" />
-
-        {/* ── Section 3: Projects ─────────────────────────────────────────── */}
-        <section id="projects" className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Featured Projects</h2>
-            <p className="text-sm text-stone-600 dark:text-zinc-400">
-              Systems architecture, API integration, and automation tools built during my studies and research.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((proj) => {
-              const cardContent = (
-                <>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-zinc-900 shrink-0">
-                      {proj.icon}
-                    </div>
-                    <h3 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
-                      {proj.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs text-stone-600 dark:text-zinc-400 leading-relaxed mb-6 flex-1">
-                    {proj.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-stone-200/50 dark:border-zinc-800/40">
-                    {proj.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 dark:bg-zinc-900/60 border border-stone-200/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              );
-
-              if (proj.href) {
-                return (
-                  <a
-                    key={proj.title}
-                    href={proj.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bento-card p-5 flex flex-col justify-between group cursor-pointer"
-                  >
-                    {cardContent}
-                  </a>
-                );
-              }
-
-              return (
-                <div key={proj.title} className="bento-card p-5 flex flex-col justify-between">
-                  {cardContent}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        <div className="sep" />
-
-        {/* ── Section 4: Education & Certs ───────────────────────────────── */}
-        <section id="education" className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          
-          {/* Ruppin B.Sc. card */}
-          <div className="bento-card p-6 lg:col-span-2 space-y-6">
-            <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-500 shrink-0">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="font-bold text-lg text-stone-900 dark:text-white">B.Sc. Computer Science</h2>
-                  <p className="text-xs text-amber-600 dark:text-amber-400 font-semibold font-mono">
-                    Ruppin Academic Center · Graduate (2022 – 2026)
-                  </p>
-                </div>
-              </div>
-              <Globe2 className="w-5 h-5 text-stone-300 dark:text-zinc-600" />
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-stone-400 dark:text-zinc-500">
-                Coursework highlights & grades
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {coursework.map((course) => (
-                  <span
-                    key={course.name}
-                    className="text-xs px-3 py-1 rounded-full bg-stone-100 dark:bg-zinc-900/60 text-stone-600 dark:text-zinc-400 border border-stone-200/50 dark:border-zinc-800/50"
-                  >
-                    {course.name}{" "}
-                    <span className="text-amber-600 dark:text-amber-400 font-bold ml-1">{course.grade}</span>
-                  </span>
-                ))}
-              </div>
-
-              <div className="border-t border-stone-200/30 dark:border-zinc-800/30 pt-4 text-xs text-stone-500 dark:text-zinc-500 space-y-1.5 font-mono">
-                <p>Focus Area: Software Systems Development & Algorithms</p>
-                <p>Languages: Hebrew (Native) · English (Proficient) · Russian (Proficient)</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Certifications Card */}
-          <div className="bento-card p-6 flex flex-col justify-between min-h-[310px]">
-            <div>
-              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <BadgeCheck className="w-5 h-5 text-emerald-500" />
-                  <h2 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400">Badges</h2>
-                </div>
-                <span className="text-xs font-mono text-stone-400">{certifications.length} Credentials</span>
-              </div>
-
-              <div className="space-y-3.5">
-                {certifications.map((c) => (
-                  <a
-                    key={c.verifyUrl}
-                    href={c.verifyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-2.5 rounded-xl bg-stone-50/50 dark:bg-zinc-900/25 border border-stone-200/40 dark:border-zinc-800/40 hover:border-amber-500/40 transition-colors"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="font-bold text-xs text-stone-800 dark:text-zinc-200 leading-snug group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
-                          {c.title}
-                        </h4>
-                        <p className="text-[10px] text-stone-400 dark:text-zinc-500 mt-0.5">
-                          {c.issuer} · {c.issued}
-                        </p>
-                      </div>
-                      <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-amber-500 transition-colors shrink-0 ml-2" />
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 pt-3 border-t border-stone-200/60 dark:border-zinc-800/60 text-center">
-              <a
-                href={LINKEDIN_CERT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-600 dark:text-zinc-400 hover:text-amber-500 dark:hover:text-amber-400 transition-colors"
-              >
-                LinkedIn Credentials Directory
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
         </section>
 
         <div className="sep" />
