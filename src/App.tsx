@@ -462,6 +462,53 @@ export default function App() {
         <section id="overview" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             
+            {/* Haifa Vibe widget (spans 2 cols, 2 rows) */}
+            <div className="bento-card md:col-span-2 md:row-span-2 p-6 flex flex-col justify-between min-h-[360px] relative group overflow-hidden">
+              {/* Surfing photo background always visible but styled nicely */}
+              <div className="absolute inset-0 pointer-events-none">
+                <img 
+                  src="/dan-surf.jpg" 
+                  alt="Dan surfing" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Theme-aware overlay for text readability */}
+                <div className="absolute inset-0 bg-stone-50/80 dark:bg-[#09090b]/85 group-hover:bg-stone-50/60 group-hover:dark:bg-[#09090b]/70 transition-colors duration-300" />
+              </div>
+
+              <div className="flex items-center justify-between z-10">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-stone-500 dark:text-zinc-400 group-hover:text-stone-700 dark:group-hover:text-zinc-200 transition-colors">Haifa Local · Live Clock</span>
+                </div>
+                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-500 animate-spin-slow transition-colors" />
+              </div>
+              
+              <div className="z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
+                <div className="flex items-baseline gap-2 text-stone-850 dark:text-white font-mono font-black text-5xl md:text-6xl tracking-tight">
+                  <Clock className="w-8 h-8 md:w-10 md:h-10 text-amber-500 dark:text-amber-400 shrink-0" />
+                  <span>{time || "12:00:00"}</span>
+                </div>
+                <p className="text-xs font-mono text-stone-500 dark:text-zinc-400 mt-2 ml-1">Haifa, Israel · timezone UTC+3 🌊</p>
+              </div>
+
+              {/* Surf Conditions */}
+              <div className="z-10 py-3 mt-4 border-y border-stone-200/40 dark:border-zinc-800/40 space-y-1">
+                <span className="text-[10px] font-mono uppercase text-amber-600 dark:text-amber-400 font-bold block">Surf & Weather Vibe</span>
+                <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-mono text-stone-600 dark:text-zinc-400 group-hover:text-stone-850 dark:group-hover:text-zinc-200 transition-colors">
+                  <span className="flex items-center gap-1">🏄‍♂️ Swell: 0.8m @ 7s</span>
+                  <span className="flex items-center gap-1">💨 Wind: 6kt Offshore</span>
+                  <span className="flex items-center gap-1">🌡️ Sea Temp: 22°C</span>
+                </div>
+              </div>
+              
+              <div className="pt-4 z-10 flex items-center justify-between border-t border-stone-200/20 dark:border-zinc-800/20">
+                <p className="text-sm md:text-base italic font-serif text-stone-700 dark:text-zinc-300 group-hover:text-stone-900 group-hover:dark:text-white transition-colors leading-snug animate-wave">
+                  &ldquo;Surfer by day, Software Engineer by night.&rdquo;
+                </p>
+                <span className="text-[10px] text-stone-400 dark:text-zinc-500 font-mono hidden sm:inline">Med Sea 🌊</span>
+              </div>
+            </div>
+
             {/* profile bento card (spans 2 cols, 2 rows) */}
             <div className="bento-card p-6 md:col-span-2 md:row-span-2 flex flex-col justify-between min-h-[360px]">
               <div>
@@ -507,6 +554,7 @@ export default function App() {
                 </a>
               </div>
             </div>
+
 
             {/* Terminal Card (spans 2 cols, 2 rows) */}
             <div 
@@ -581,55 +629,36 @@ export default function App() {
               </div>
             </div>
 
-            {/* Haifa Vibe widget (1x1) */}
-            <div className="bento-card p-5 flex flex-col justify-between aspect-square relative group overflow-hidden">
-              {/* Surfing photo background always visible but styled nicely */}
-              <div className="absolute inset-0 pointer-events-none">
-                <img 
-                  src="/dan-surf.jpg" 
-                  alt="Dan surfing" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Theme-aware overlay for text readability */}
-                <div className="absolute inset-0 bg-stone-50/80 dark:bg-[#09090b]/85 group-hover:bg-stone-50/60 group-hover:dark:bg-[#09090b]/70 transition-colors duration-300" />
-              </div>
-
-              <div className="flex items-center justify-between z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
-                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-500 animate-spin-slow" />
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500 group-hover:text-stone-500 dark:group-hover:text-zinc-300">Haifa Local</span>
-              </div>
-              
-              <div className="z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
-                <div className="flex items-baseline gap-1.5 text-stone-850 dark:text-white font-mono font-bold text-3xl">
-                  <Clock className="w-4.5 h-4.5 text-amber-500" />
-                  <span>{time || "12:00:00"}</span>
+            {/* IDF Timeline widget (spans 2 cols, 1 row) */}
+            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[170px]">
+              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <Shield className="w-5 h-5 text-rose-500" />
+                  <h3 className="font-bold text-sm text-stone-900 dark:text-white uppercase tracking-wider">IDF Combat Service</h3>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-zinc-400 mt-2 font-medium">Haifa, Israel 🌊</p>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">2016 – Present</span>
               </div>
               
-              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 z-10 group-hover:border-stone-300 dark:group-hover:border-white/20 transition-colors">
-                <p className="text-[11px] italic font-sans text-stone-600 dark:text-zinc-400 group-hover:text-stone-800 dark:group-hover:text-zinc-100 leading-snug animate-wave">
-                  &ldquo;Surfer by day, Software Engineer by night.&rdquo;
-                </p>
-              </div>
-            </div>
-
-            {/* IDF Timeline widget (1x1) */}
-            <div className="bento-card p-5 flex flex-col justify-between aspect-square">
-              <div className="flex items-center justify-between">
-                <Shield className="w-5 h-5 text-rose-500" />
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">IDF Service</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-sm text-stone-900 dark:text-white">Combat Soldier</h3>
-                <p className="text-xs font-mono text-stone-500 dark:text-zinc-500 mt-0.5">&ldquo;Orev Tzanhanim&rdquo; Unit</p>
-                <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-3 leading-relaxed">
-                  Mandatory service (2016-19) including international NATO drills. Active reserve fighter.
-                </p>
-              </div>
-              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 flex items-center justify-between">
-                <span className="text-[10px] uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Reservist</span>
-                <span className="text-[10px] text-stone-400">2016 – Present</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <h4 className="font-bold text-sm text-stone-900 dark:text-white">Combat Fighter & Commander</h4>
+                  <p className="text-xs font-mono text-amber-600 dark:text-amber-400 mt-0.5">&ldquo;Orev Tzanhanim&rdquo; Elite Paratroopers Unit</p>
+                  <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-2 leading-relaxed">
+                    Mandatory service including advanced combat tactics, leadership training, and international joint NATO drills.
+                  </p>
+                </div>
+                <div className="flex flex-col justify-between border-t md:border-t-0 md:border-l border-stone-200/60 dark:border-zinc-800/60 pt-3 md:pt-0 md:pl-4">
+                  <div>
+                    <h4 className="font-bold text-xs text-stone-900 dark:text-white uppercase tracking-wide">Active Reserve Fighter</h4>
+                    <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-1 leading-relaxed">
+                      Continues active duty service when summoned, demonstrating high resilience, leadership, and operational adaptability.
+                    </p>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between text-[10px]">
+                    <span className="uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Security Clearance Level 2</span>
+                    <span className="text-stone-400">IDF Reservist</span>
+                  </div>
+                </div>
               </div>
             </div>
 
