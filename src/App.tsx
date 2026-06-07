@@ -5,7 +5,6 @@ import {
   Shield,
   Mail,
   Car,
-  Gamepad2,
   Archive,
   Sun,
   Moon,
@@ -96,35 +95,28 @@ const projects: Project[] = [
   },
   {
     title: "AWS Secure VPC Architecture",
-    description: "Multi-VPC peered network layout deployed using modular CloudFormation templates. Incorporates RDS Proxy, hardened private subnets, bastion host security patterns, and custom CloudWatch alarms for real-time traffic monitoring and host metric logging.",
+    description: "Architected a secure, multi-VPC AWS environment with VPC peering, RDS Proxy, and layered security (NACLs, Security Groups) to ensure strict service isolation and traffic control.",
     tags: ["AWS", "CloudFormation", "RDS Proxy", "VPC Peering", "CloudWatch"],
     icon: <Cloud className="w-5 h-5 text-amber-500" />,
     href: "https://github.com/Dangutman98/aws-secure-vpc-architecture",
   },
   {
     title: "Malicious Email Scorer (Gmail Add-on)",
-    description: "A Google Apps Script add-on that dynamically screens incoming emails. Analyzes SPF/DKIM/DMARC headers, scrapes sender trust indicators, runs safety algorithms on attachment extensions, and fetches VirusTotal API scores to present real-time safety metrics.",
+    description: "Built a secure Gmail extension integrating the VirusTotal API for real-time detection of malicious links and phishing, significantly enhancing user threat visibility.",
     tags: ["Google Apps Script", "Gmail API", "Cybersecurity", "VirusTotal"],
     icon: <Mail className="w-5 h-5 text-sky-500" />,
     href: "https://github.com/Dangutman98/Gmail-Add-on---Malicious-Email-Scorer",
   },
   {
     title: "Project F1 — Formula 1 Fan Site",
-    description: "Full-stack F1 platform built using React, TypeScript, ASP.NET Core, and Firebase Auth. Includes an associated CloudFormation topology setting up a scaled VPC, private SQL Server RDS instance, NAT gateways, and load balancer rules.",
-    tags: ["React", "ASP.NET Core", "SQL Server", "Firebase", "IaC"],
+    description: "Engineered a full-stack web application using React and .NET Web API, designing RESTful services and managing data persistence with Entity Framework and SQL databases.",
+    tags: ["React", ".NET Web API", "Entity Framework", "SQL Server", "Firebase"],
     icon: <Car className="w-5 h-5 text-rose-500" />,
     href: "https://github.com/Dangutman98/F1Project",
   },
   {
-    title: "Ropes & Ladders with Smart AI",
-    description: "Pygame-based tactical implementation of the classic game. Features single-player versus minimax AI (engineered with alpha-beta pruning, transposition tables, and heuristic rope placements) alongside local multi-agent simulations.",
-    tags: ["Python", "Pygame", "Minimax AI", "Algorithms"],
-    icon: <Gamepad2 className="w-5 h-5 text-violet-500" />,
-    href: "https://github.com/Dangutman98/RopesAndLadders",
-  },
-  {
-    title: "Advanced Bash Unpacker",
-    description: "Linux systems utility that unpacks file archives recursively. Uses magic-byte signatures rather than file extensions for reliable format detection, handles collisions gracefully, and processes nested directory streams efficiently.",
+    title: "Bash Automation Utility",
+    description: "Developed a recursive CLI tool for multi format archive extraction (ZIP, GZ, BZ2) utilizing content-based detection (file -b) and robust error handling logic.",
     tags: ["Bash", "Linux Shell", "CLI Tooling", "Automation"],
     icon: <Archive className="w-5 h-5 text-amber-600" />,
     href: "https://github.com/Dangutman98/advanced-bash-unpacker",
@@ -142,11 +134,11 @@ const coursework = [
 ];
 
 const skillCategories = [
-  { title: "Backend Systems", detail: "TypeScript, Javascript, Node.js, Java, C#, Python, Bash" },
-  { title: "Cloud & IaC", detail: "AWS, GCP, Terraform, CloudFormation" },
-  { title: "Containers & OS", detail: "Docker, Docker Compose, Linux (Red Hat, Ubuntu, CentOS)" },
-  { title: "Databases & API", detail: "MySQL, RDS, PostgreSQL, REST APIs, Firebase" },
-  { title: "AI & Automation", detail: "AI agents, LLM APIs, automation scripts" },
+  { title: "Infrastructure & Tools", detail: "Linux, AWS, GCP, CloudFormation, Terraform, Docker" },
+  { title: "AI & Developer Tools", detail: "Cursor IDE, Open Code, Prompt Engineering" },
+  { title: "Databases", detail: "MySQL, Amazon RDS, Firebase" },
+  { title: "Programming", detail: "Python, Bash, JavaScript, TypeScript, React, Java, C#" },
+  { title: "Languages", detail: "Hebrew - Native, English - Proficient, Russian - Proficient" },
 ];
 
 
@@ -463,22 +455,22 @@ export default function App() {
 
             
 
-            {/* IDF Combat Service Widget (2x1) */}
+                        {/* IDF Combat Service Widget (2x1) */}
             <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
               <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2">
                 <Shield className="w-5 h-5 text-rose-500" />
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">IDF Service</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">Military Service</span>
               </div>
               <div>
-                <h3 className="font-bold text-xs text-stone-900 dark:text-white truncate">Combat Commander</h3>
-                <p className="text-[10px] font-mono text-stone-400 dark:text-zinc-500 mt-0.5">&ldquo;Orev Tzanhanim&rdquo; Unit</p>
-                <p className="text-[10px] text-stone-600 dark:text-zinc-400 mt-2 leading-relaxed">
-                  Mandatory paratrooper commander service including advanced joint NATO drills. Active reserve fighter.
-                </p>
+                <h3 className="font-bold text-sm text-stone-900 dark:text-white mt-4">IDF | 2016 – 2019</h3>
+                <ul className="list-disc pl-4 text-xs text-stone-600 dark:text-zinc-400 mt-4 space-y-2 leading-relaxed">
+                  <li>Served as a combat soldier in &ldquo;Orev Tzanhanim&rdquo; unit.</li>
+                  <li>Demonstrated discipline, accountability, and teamwork under demanding conditions.</li>
+                </ul>
               </div>
-              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 flex items-center justify-between">
-                <span className="text-[9px] uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Reservist</span>
-                <span className="text-[9px] text-stone-400">2016 – Pres.</span>
+              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 mt-4 flex items-center justify-between">
+                <span className="text-[9px] uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Completed Service</span>
+                <span className="text-[9px] text-stone-400">2016 – 2019</span>
               </div>
             </div>
 
