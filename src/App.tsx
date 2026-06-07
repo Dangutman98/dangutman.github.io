@@ -264,6 +264,7 @@ export default function App() {
   const navItems = [
     { label: "Overview", href: "#overview" },
     { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
     { label: "Education", href: "#education" },
     { label: "Architecture", href: "#architecture" },
     { label: "Contact", href: "#contact" },
@@ -420,6 +421,83 @@ export default function App() {
             </div>
 
 
+          </div>
+        </section>
+
+        <div className="sep" />
+
+        {/* ── Section 3: Projects ─────────────────────────────────────────── */}
+        <section id="projects" className="space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Featured Projects</h2>
+            <p className="text-sm text-stone-600 dark:text-zinc-400">
+              Systems architecture, API integration, and automation tools built during my studies and research.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((proj) => {
+              const cardContent = (
+                <>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-zinc-900 shrink-0">
+                      {proj.icon}
+                    </div>
+                    <h3 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                      {proj.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-stone-600 dark:text-zinc-400 leading-relaxed mb-6 flex-1">
+                    {proj.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-stone-200/50 dark:border-zinc-800/40">
+                    {proj.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 dark:bg-zinc-900/60 border border-stone-200/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              );
+
+              if (proj.href) {
+                return (
+                  <a
+                    key={proj.title}
+                    href={proj.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bento-card p-5 flex flex-col justify-between group cursor-pointer"
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={proj.title} className="bento-card p-5 flex flex-col justify-between">
+                  {cardContent}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <div className="sep" />
+
+        {/* ── Section: Skills & Background ───────────────────────────────── */}
+        <section id="skills" className="space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Skills & Background</h2>
+            <p className="text-sm text-stone-600 dark:text-zinc-400">
+              Core technical competency matrix, verified credentials, and military service details.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Full skill matrix summary bento (2x1) */}
             <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
               <div>
@@ -505,69 +583,6 @@ export default function App() {
                 ))}
               </div>
             </div>
-
-          </div>
-        </section>
-
-        <div className="sep" />
-
-        {/* ── Section 3: Projects ─────────────────────────────────────────── */}
-        <section id="projects" className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Featured Projects</h2>
-            <p className="text-sm text-stone-600 dark:text-zinc-400">
-              Systems architecture, API integration, and automation tools built during my studies and research.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((proj) => {
-              const cardContent = (
-                <>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-zinc-900 shrink-0">
-                      {proj.icon}
-                    </div>
-                    <h3 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
-                      {proj.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs text-stone-600 dark:text-zinc-400 leading-relaxed mb-6 flex-1">
-                    {proj.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-stone-200/50 dark:border-zinc-800/40">
-                    {proj.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 dark:bg-zinc-900/60 border border-stone-200/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              );
-
-              if (proj.href) {
-                return (
-                  <a
-                    key={proj.title}
-                    href={proj.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bento-card p-5 flex flex-col justify-between group cursor-pointer"
-                  >
-                    {cardContent}
-                  </a>
-                );
-              }
-
-              return (
-                <div key={proj.title} className="bento-card p-5 flex flex-col justify-between">
-                  {cardContent}
-                </div>
-              );
-            })}
           </div>
         </section>
 
