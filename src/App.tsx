@@ -629,36 +629,108 @@ export default function App() {
               </div>
             </div>
 
-            {/* IDF Timeline widget (spans 2 cols, 1 row) */}
-            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[170px]">
-              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-3">
-                <div className="flex items-center gap-2.5">
-                  <Shield className="w-5 h-5 text-rose-500" />
-                  <h3 className="font-bold text-sm text-stone-900 dark:text-white uppercase tracking-wider">IDF Combat Service</h3>
+            {/* Top Project Widget (spans 2 cols, 1 row) */}
+            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between min-h-[170px] group">
+              <div>
+                <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <Shield className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <h3 className="font-bold text-sm text-stone-900 dark:text-white uppercase tracking-wider">Featured AI Project</h3>
+                  </div>
+                  <a 
+                    href="https://github.com/Dangutman98/botanical-agent"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-[10px] font-mono text-amber-600 dark:text-amber-400 font-bold hover:underline"
+                  >
+                    <span>botanical-agent</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">2016 – Present</span>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <h4 className="font-bold text-sm text-stone-900 dark:text-white">Combat Fighter & Commander</h4>
-                  <p className="text-xs font-mono text-amber-600 dark:text-amber-400 mt-0.5">&ldquo;Orev Tzanhanim&rdquo; Elite Paratroopers Unit</p>
-                  <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-2 leading-relaxed">
-                    Mandatory service including advanced combat tactics, leadership training, and international joint NATO drills.
+                
+                <div className="mt-3.5">
+                  <h4 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                    Secure Botanical AI Agent
+                  </h4>
+                  <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-1.5 leading-relaxed">
+                    Designed a serverless RAG application utilizing Groq LLMs and Pinecone vector search, implementing a hybrid search engine (semantic vectors fused with local BM25) deployed via containerized Docker services on AWS Lambda.
                   </p>
                 </div>
-                <div className="flex flex-col justify-between border-t md:border-t-0 md:border-l border-stone-200/60 dark:border-zinc-800/60 pt-3 md:pt-0 md:pl-4">
-                  <div>
-                    <h4 className="font-bold text-xs text-stone-900 dark:text-white uppercase tracking-wide">Active Reserve Fighter</h4>
-                    <p className="text-[11px] text-stone-600 dark:text-zinc-400 mt-1 leading-relaxed">
-                      Continues active duty service when summoned, demonstrating high resilience, leadership, and operational adaptability.
-                    </p>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between text-[10px]">
-                    <span className="uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Security Clearance Level 2</span>
-                    <span className="text-stone-400">IDF Reservist</span>
-                  </div>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-stone-200/40 dark:border-zinc-800/40 mt-3.5">
+                {["AWS Lambda", "Pinecone", "Groq LLM", "Docker", "Serverless RAG"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[9px] font-mono px-2 py-0.5 rounded bg-stone-100 dark:bg-zinc-900/60 border border-stone-250/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications Widget (1x1) */}
+            <div className="bento-card p-5 flex flex-col justify-between aspect-square">
+              <div className="flex items-center justify-between">
+                <BadgeCheck className="w-5 h-5 text-emerald-500" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">Badges</span>
+              </div>
+              <div className="space-y-2.5 my-2">
+                <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
+                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS CloudFormation</span>
+                  <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
                 </div>
+                <div className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-1.5">
+                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">AWS Networking</span>
+                  <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-bold text-[11px] text-stone-800 dark:text-zinc-200 truncate leading-snug">Bash Shell Scripts</span>
+                  <span className="text-[9px] text-stone-400">KodeKloud · Mar 26</span>
+                </div>
+              </div>
+              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 text-center">
+                <a
+                  href="#education"
+                  className="text-[9px] font-mono font-bold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  All 5 credentials →
+                </a>
+              </div>
+            </div>
+
+            {/* IDF Combat Service Widget (1x1) */}
+            <div className="bento-card p-5 flex flex-col justify-between aspect-square">
+              <div className="flex items-center justify-between">
+                <Shield className="w-5 h-5 text-rose-500" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">IDF Service</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs text-stone-900 dark:text-white truncate">Combat Commander</h3>
+                <p className="text-[10px] font-mono text-stone-400 dark:text-zinc-500 mt-0.5">&ldquo;Orev Tzanhanim&rdquo; Unit</p>
+                <p className="text-[10px] text-stone-600 dark:text-zinc-400 mt-2 leading-relaxed">
+                  Mandatory paratrooper commander service including advanced joint NATO drills. Active reserve fighter.
+                </p>
+              </div>
+              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-2 flex items-center justify-between">
+                <span className="text-[9px] uppercase font-mono tracking-wider font-semibold text-rose-500 dark:text-rose-400">Reservist</span>
+                <span className="text-[9px] text-stone-400">2016 – Pres.</span>
+              </div>
+            </div>
+
+            {/* Full skill matrix summary bento (2x1) */}
+            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
+              <div>
+                <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400 mb-3">Skill Matrix</h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs">
+                  {skillCategories.map((sc) => (
+                    <li key={sc.title} className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-2">
+                      <span className="font-semibold text-stone-800 dark:text-zinc-300">{sc.title}</span>
+                      <span className="text-[11px] text-stone-500 dark:text-zinc-500 mt-0.5">{sc.detail}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -681,21 +753,6 @@ export default function App() {
                     <p className="text-[10px] text-stone-500 dark:text-zinc-500 mt-0.5">{stack.details}</p>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Full skill matrix summary bento (2x1) */}
-            <div className="bento-card p-6 md:col-span-2 flex flex-col justify-between">
-              <div>
-                <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400 mb-3">Skill Matrix</h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs">
-                  {skillCategories.map((sc) => (
-                    <li key={sc.title} className="flex flex-col border-b border-stone-200/30 dark:border-zinc-800/30 pb-2">
-                      <span className="font-semibold text-stone-800 dark:text-zinc-300">{sc.title}</span>
-                      <span className="text-[11px] text-stone-500 dark:text-zinc-500 mt-0.5">{sc.detail}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
 
