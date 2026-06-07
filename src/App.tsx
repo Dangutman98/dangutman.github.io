@@ -510,18 +510,18 @@ export default function App() {
 
             {/* Terminal Card (spans 2 cols, 2 rows) */}
             <div 
-              className="bento-card terminal-card md:col-span-2 md:row-span-2 p-4 flex flex-col justify-between min-h-[360px]"
+              className="bento-card terminal-card bg-white/70 dark:bg-zinc-900/60 border-stone-200/60 dark:border-zinc-800/60 md:col-span-2 md:row-span-2 p-4 flex flex-col justify-between min-h-[360px]"
               onClick={() => terminalInputRef.current?.focus()}
             >
               {/* titlebar */}
-              <div className="flex items-center justify-between border-b border-zinc-800/60 pb-3 mb-3">
+              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/40 pb-3 mb-3">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                  <span className="ml-2.5 font-mono text-[11px] text-zinc-500">dan@workstation:~</span>
+                  <span className="ml-2.5 font-mono text-[11px] text-stone-400 dark:text-zinc-500">dan@workstation:~</span>
                 </div>
-                <Terminal className="w-4 h-4 text-zinc-600" />
+                <Terminal className="w-4 h-4 text-stone-400 dark:text-zinc-500" />
               </div>
 
               {/* logs display */}
@@ -582,32 +582,33 @@ export default function App() {
             </div>
 
             {/* Haifa Vibe widget (1x1) */}
-            <div className="bento-card p-5 flex flex-col justify-between aspect-square relative group">
-              {/* Hover image overlay representing surfing background */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div className="bento-card p-5 flex flex-col justify-between aspect-square relative group overflow-hidden">
+              {/* Surfing photo background always visible but styled nicely */}
+              <div className="absolute inset-0 pointer-events-none">
                 <img 
                   src="/dan-surf.jpg" 
                   alt="Dan surfing" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-stone-900/40 dark:bg-black/55" />
+                {/* Theme-aware overlay for text readability */}
+                <div className="absolute inset-0 bg-stone-50/80 dark:bg-[#09090b]/85 group-hover:bg-stone-50/60 group-hover:dark:bg-[#09090b]/70 transition-colors duration-300" />
               </div>
 
-              <div className="flex items-center justify-between z-10 group-hover:text-white transition-colors">
-                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-300 animate-spin-slow" />
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500 group-hover:text-zinc-300">Haifa Local</span>
+              <div className="flex items-center justify-between z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
+                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-500 animate-spin-slow" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500 group-hover:text-stone-500 dark:group-hover:text-zinc-300">Haifa Local</span>
               </div>
               
-              <div className="z-10 group-hover:text-white transition-colors">
-                <div className="flex items-baseline gap-1.5 text-stone-800 dark:text-white font-mono font-bold text-3xl group-hover:text-white">
-                  <Clock className="w-4.5 h-4.5 text-amber-500 group-hover:text-amber-300" />
+              <div className="z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
+                <div className="flex items-baseline gap-1.5 text-stone-850 dark:text-white font-mono font-bold text-3xl">
+                  <Clock className="w-4.5 h-4.5 text-amber-500" />
                   <span>{time || "12:00:00"}</span>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-zinc-400 mt-2 font-medium group-hover:text-zinc-200">Haifa, Israel 🌊</p>
+                <p className="text-xs text-stone-500 dark:text-zinc-400 mt-2 font-medium">Haifa, Israel 🌊</p>
               </div>
               
-              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 z-10 group-hover:border-white/20 transition-colors">
-                <p className="text-[11px] italic font-sans text-stone-600 dark:text-zinc-400 group-hover:text-zinc-100 leading-snug animate-wave">
+              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 z-10 group-hover:border-stone-300 dark:group-hover:border-white/20 transition-colors">
+                <p className="text-[11px] italic font-sans text-stone-600 dark:text-zinc-400 group-hover:text-stone-800 dark:group-hover:text-zinc-100 leading-snug animate-wave">
                   &ldquo;Surfer by day, Software Engineer by night.&rdquo;
                 </p>
               </div>
