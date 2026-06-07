@@ -488,7 +488,7 @@ export default function App() {
                 </h2>
                 
                 <p className="mt-6 text-sm text-stone-600 dark:text-zinc-400 leading-relaxed max-w-md">
-                  B.Sc. graduate from <span className="font-semibold text-stone-900 dark:text-white">Ruppin Academic Center</span> (2022–2026). Focused on writing robust backend services, provisioning scalable cloud architectures, integrating LLMs/AI systems, and setting up automated CI/CD pipelines.
+                  Software Engineer and Computer Science graduate with experience in backend environments and system automation. Skilled in Python, Bash, and Linux internals, with a proven ability to develop test scripts and robust CI/CD pipelines. Proactive problem solver who integrates AI tools to ensure system stability, dedicated to delivering production-ready and resilient technology.
                 </p>
               </div>
 
@@ -582,20 +582,32 @@ export default function App() {
             </div>
 
             {/* Haifa Vibe widget (1x1) */}
-            <div className="bento-card p-5 flex flex-col justify-between aspect-square">
-              <div className="flex items-center justify-between">
-                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 animate-spin-slow" />
-                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500">Haifa Local</span>
+            <div className="bento-card p-5 flex flex-col justify-between aspect-square relative group">
+              {/* Hover image overlay representing surfing background */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <img 
+                  src="/dan-surf.jpg" 
+                  alt="Dan surfing" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-stone-900/40 dark:bg-black/55" />
               </div>
-              <div>
-                <div className="flex items-baseline gap-1.5 text-stone-800 dark:text-white font-mono font-bold text-3xl">
-                  <Clock className="w-4.5 h-4.5 text-amber-500" />
+
+              <div className="flex items-center justify-between z-10 group-hover:text-white transition-colors">
+                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-300 animate-spin-slow" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 dark:text-zinc-500 group-hover:text-zinc-300">Haifa Local</span>
+              </div>
+              
+              <div className="z-10 group-hover:text-white transition-colors">
+                <div className="flex items-baseline gap-1.5 text-stone-800 dark:text-white font-mono font-bold text-3xl group-hover:text-white">
+                  <Clock className="w-4.5 h-4.5 text-amber-500 group-hover:text-amber-300" />
                   <span>{time || "12:00:00"}</span>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-zinc-400 mt-2 font-medium">Haifa, Israel 🌊</p>
+                <p className="text-xs text-stone-500 dark:text-zinc-400 mt-2 font-medium group-hover:text-zinc-200">Haifa, Israel 🌊</p>
               </div>
-              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3">
-                <p className="text-[11px] italic font-sans text-stone-600 dark:text-zinc-400 leading-snug animate-wave">
+              
+              <div className="border-t border-stone-200/60 dark:border-zinc-800/60 pt-3 z-10 group-hover:border-white/20 transition-colors">
+                <p className="text-[11px] italic font-sans text-stone-600 dark:text-zinc-400 group-hover:text-zinc-100 leading-snug animate-wave">
                   &ldquo;Surfer by day, Software Engineer by night.&rdquo;
                 </p>
               </div>
