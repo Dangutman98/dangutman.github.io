@@ -153,7 +153,7 @@ function ThemeToggle({ theme, onToggle }: { theme: "light" | "dark"; onToggle: (
   return (
     <button
       onClick={onToggle}
-      className="p-2.5 rounded-full border border-stone-200 dark:border-zinc-800 text-stone-600 dark:text-zinc-400 hover:text-amber-500 dark:hover:text-amber-400 transition-colors"
+      className="p-2 rounded-md border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors cursor-pointer"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -217,7 +217,7 @@ export default function App() {
       <header className="sticky top-0 z-50 w-full border-b border-stone-200/60 dark:border-zinc-800/40 bg-stone-50/80 dark:bg-[#09090b]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <a href="#" className="flex items-center gap-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 animate-pulse" />
             <span className="font-bold text-sm tracking-tight">dan.gutman.dev</span>
           </a>
 
@@ -331,12 +331,12 @@ export default function App() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="text-[10px] font-mono uppercase tracking-widest text-stone-500 dark:text-zinc-400 group-hover:text-stone-700 dark:group-hover:text-zinc-200 transition-colors">Haifa Local · Live Clock</span>
                 </div>
-                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-amber-500 animate-spin-slow transition-colors" />
+                <Compass className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-50 animate-spin-slow transition-colors" />
               </div>
               
               <div className="z-10 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
                 <div className="flex items-baseline gap-2 text-stone-850 dark:text-white font-mono font-black text-5xl md:text-6xl tracking-tight">
-                  <Clock className="w-8 h-8 md:w-10 md:h-10 text-amber-500 dark:text-amber-400 shrink-0" />
+                  <Clock className="w-8 h-8 md:w-10 md:h-10 text-zinc-900 dark:text-zinc-100 shrink-0" />
                   <span>{time || "12:00:00"}</span>
                 </div>
                 <p className="text-xs font-mono text-stone-500 dark:text-zinc-400 mt-2 ml-1">Haifa, Israel · timezone UTC+3 🌊</p>
@@ -344,7 +344,7 @@ export default function App() {
 
               {/* Surf Conditions */}
               <div className="z-10 py-3 mt-4 border-y border-stone-200/40 dark:border-zinc-800/40 space-y-1">
-                <span className="text-[10px] font-mono uppercase text-amber-600 dark:text-amber-400 font-bold block">Surf & Weather Vibe</span>
+                <span className="text-[10px] font-mono uppercase text-zinc-900 dark:text-zinc-100 font-bold block">Surf & Weather Vibe</span>
                 <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-mono text-stone-600 dark:text-zinc-400 group-hover:text-stone-850 dark:group-hover:text-zinc-200 transition-colors">
                   <span className="flex items-center gap-1">🏄‍♂️ Swell: 0.8m @ 7s</span>
                   <span className="flex items-center gap-1">💨 Wind: 6kt Offshore</span>
@@ -382,7 +382,7 @@ export default function App() {
                     <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-zinc-900 shrink-0">
                       {proj.icon}
                     </div>
-                    <h3 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                    <h3 className="font-bold text-base text-stone-900 dark:text-white group-hover:text-zinc-900 dark:group-hover:text-zinc-50 dark:group-hover:text-amber-400 transition-colors">
                       {proj.title}
                     </h3>
                   </div>
@@ -393,7 +393,7 @@ export default function App() {
                     {proj.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 dark:bg-zinc-900/60 border border-stone-200/50 dark:border-zinc-800/50 text-stone-600 dark:text-zinc-400"
+                        className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200/50 dark:border-zinc-800/50 text-zinc-600 dark:text-zinc-400"
                       >
                         {tag}
                       </span>
@@ -487,7 +487,7 @@ export default function App() {
                   { name: "Automation", details: "Bash · Linux · Scripting", icon: "⚙️" },
                   { name: "AI & GenAI", details: "RAG · LLMs · Pinecone · ONNX", icon: "🧠" }
                 ].map((stack) => (
-                  <div key={stack.name} className="p-3 rounded-xl bg-stone-100/50 dark:bg-zinc-900/40 border border-stone-200/40 dark:border-zinc-800/40 hover:-translate-y-0.5 transition-all">
+                  <div key={stack.name} className="p-3 rounded-lg bg-zinc-100/50 dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/40 hover:-translate-y-0.5 transition-all">
                     <span className="text-base">{stack.icon}</span>
                     <h4 className="font-bold text-xs mt-2 text-stone-800 dark:text-zinc-200">{stack.name}</h4>
                     <p className="text-[10px] text-stone-500 dark:text-zinc-500 mt-0.5">{stack.details}</p>
@@ -507,12 +507,12 @@ export default function App() {
           <div className="bento-card p-6 lg:col-span-2 space-y-6">
             <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-500 shrink-0">
+                <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shrink-0">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
                   <h2 className="font-bold text-lg text-stone-900 dark:text-white">B.Sc. Computer Science</h2>
-                  <p className="text-xs text-amber-600 dark:text-amber-400 font-semibold font-mono">
+                  <p className="text-xs text-zinc-600 dark:text-zinc-400 font-semibold font-mono">
                     Ruppin Academic Center · Graduate (2022 – 2026)
                   </p>
                 </div>
@@ -528,10 +528,10 @@ export default function App() {
                 {coursework.map((course) => (
                   <span
                     key={course.name}
-                    className="text-xs px-3 py-1 rounded-full bg-stone-100 dark:bg-zinc-900/60 text-stone-600 dark:text-zinc-400 border border-stone-200/50 dark:border-zinc-800/50"
+                    className="text-xs px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-900/60 text-zinc-650 dark:text-zinc-400 border border-zinc-200/50 dark:border-zinc-800/50"
                   >
                     {course.name}{" "}
-                    <span className="text-amber-600 dark:text-amber-400 font-bold ml-1">{course.grade}</span>
+                    <span className="text-zinc-600 dark:text-zinc-400 font-bold ml-1">{course.grade}</span>
                   </span>
                 ))}
               </div>
@@ -561,18 +561,18 @@ export default function App() {
                     href={c.verifyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block p-2.5 rounded-xl bg-stone-50/50 dark:bg-zinc-900/25 border border-stone-200/40 dark:border-zinc-800/40 hover:border-amber-500/40 transition-colors"
+                    className="group block p-2.5 rounded-lg bg-zinc-50/50 dark:bg-zinc-900/25 border border-zinc-200/40 dark:border-zinc-800/40 hover:border-zinc-400 dark:hover:border-zinc-700 transition-colors"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h4 className="font-bold text-xs text-stone-800 dark:text-zinc-200 leading-snug group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                        <h4 className="font-bold text-xs text-stone-800 dark:text-zinc-200 leading-snug group-hover:text-zinc-900 dark:group-hover:text-zinc-50 dark:group-hover:text-amber-400 transition-colors">
                           {c.title}
                         </h4>
                         <p className="text-[10px] text-stone-400 dark:text-zinc-500 mt-0.5">
                           {c.issuer} · {c.issued}
                         </p>
                       </div>
-                      <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-amber-500 transition-colors shrink-0 ml-2" />
+                      <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-50 transition-colors shrink-0 ml-2" />
                     </div>
                   </a>
                 ))}
@@ -599,7 +599,7 @@ export default function App() {
         {/* ── Section 5: Contact ──────────────────────────────────────────── */}
         <section id="contact" className="max-w-2xl mx-auto space-y-8 text-center">
           <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-amber-400 font-bold">
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-600 dark:text-zinc-400 font-bold">
               GET IN TOUCH
             </span>
             <h2 className="text-3xl font-extrabold tracking-tight">Let&apos;s Connect</h2>
@@ -640,7 +640,7 @@ export default function App() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-full border border-stone-200 dark:border-zinc-800 text-stone-600 dark:text-zinc-400 hover:border-amber-500 hover:text-amber-500 dark:hover:text-amber-400 transition-all font-semibold text-xs uppercase tracking-wider hover:-translate-y-0.5"
+                  className="px-4 py-2 rounded-md border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium text-sm cursor-pointer"
                 >
                   {link.label}
                 </a>
