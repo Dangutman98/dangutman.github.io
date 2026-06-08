@@ -164,7 +164,7 @@ function ThemeToggle({ theme, onToggle }: { theme: "light" | "dark"; onToggle: (
 // ─── Main App ────────────────────────────────────────────────────────────────
 function getInitialTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
-  return localStorage.getItem("dan_theme") === "dark" ? "dark" : "light";
+  return localStorage.getItem("dan_theme_v2") === "dark" ? "dark" : "light";
 }
 
 export default function App() {
@@ -180,7 +180,7 @@ export default function App() {
     const root = document.documentElement;
     if (theme === "dark") root.classList.add("dark");
     else root.classList.remove("dark");
-    localStorage.setItem("dan_theme", theme);
+    localStorage.setItem("dan_theme_v2", theme);
   }, [theme]);
 
   // Clock Hook (Haifa time)
