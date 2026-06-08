@@ -211,10 +211,10 @@ export default function App() {
   ];
 
   return (
-    <div className="relative min-h-screen grid-bg font-sans antialiased text-stone-900 dark:text-zinc-100 transition-colors duration-300">
+    <div className="relative min-h-screen grid-bg font-sans antialiased text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
       
       {/* ── Navbar ────────────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 w-full border-b border-stone-200/60 dark:border-zinc-800/40 bg-stone-50/80 dark:bg-[#09090b]/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 w-full border-b border-zinc-200/60 dark:border-zinc-800/40 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <a href="#" className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 animate-pulse" />
@@ -222,9 +222,9 @@ export default function App() {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-stone-500 dark:text-zinc-400">
+          <nav className="hidden md:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="nav-link transition-colors hover:text-stone-900 dark:hover:text-white">
+              <a key={item.href} href={item.href} className="nav-link transition-colors hover:text-zinc-900 dark:hover:text-white">
                 {item.label}
               </a>
             ))}
@@ -271,18 +271,12 @@ export default function App() {
             <div className="bento-card p-6 md:col-span-2 md:row-span-2 flex flex-col justify-between min-h-[360px]">
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={PROFILE_IMAGE_SRC}
-                      alt="Dan Gutman"
-                      className="w-10 h-10 rounded-full object-cover border border-stone-200 dark:border-zinc-800"
-                    />
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 text-xs font-semibold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                      Available for Hire
-                    </span>
-                  </div>
-                  <Award className="w-5 h-5 text-amber-500" />
+                  <img
+                    src={PROFILE_IMAGE_SRC}
+                    alt="Dan Gutman"
+                    className="w-10 h-10 rounded-full object-cover border border-zinc-200 dark:border-zinc-800 shadow-sm"
+                  />
+                  <Award className="w-4.5 h-4.5 text-zinc-400 dark:text-zinc-500" />
                 </div>
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight">
                   <span className="gradient-text font-heading mr-2">Hi, I&apos;m</span>
@@ -300,13 +294,13 @@ export default function App() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#contact"
-                  className="px-5 py-2.5 rounded-full bg-stone-900 dark:bg-zinc-100 text-stone-100 dark:text-zinc-950 font-bold text-xs uppercase tracking-wider hover:bg-stone-800 dark:hover:bg-zinc-200 transition-all hover:scale-102"
+                  className="px-4 py-2 rounded-md bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 font-medium text-sm hover:bg-zinc-900/90 dark:hover:bg-zinc-50/90 transition-colors shadow-sm cursor-pointer"
                 >
                   Contact Me
                 </a>
                 <a
                   href="#projects"
-                  className="px-5 py-2.5 rounded-full border border-stone-300 dark:border-zinc-800 text-stone-600 dark:text-zinc-400 font-bold text-xs uppercase tracking-wider hover:bg-stone-100 dark:hover:bg-zinc-900 transition-all"
+                  className="px-4 py-2 rounded-md border border-zinc-200 dark:border-zinc-800 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-50 font-medium text-sm transition-colors cursor-pointer"
                 >
                   View Code
                 </a>
@@ -476,8 +470,8 @@ export default function App() {
             {/* Tech stack widget (spans all 4 cols) */}
             <div className="bento-card p-6 md:col-span-4 flex flex-col justify-between">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-sm uppercase tracking-wider text-stone-500 dark:text-zinc-400">Primary Stack</h3>
-                <Cpu className="w-4 h-4 text-amber-500" />
+                <h3 className="font-bold text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Primary Stack</h3>
+                <Cpu className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
@@ -489,8 +483,8 @@ export default function App() {
                 ].map((stack) => (
                   <div key={stack.name} className="p-3 rounded-lg bg-zinc-100/50 dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/40 hover:-translate-y-0.5 transition-all">
                     <span className="text-base">{stack.icon}</span>
-                    <h4 className="font-bold text-xs mt-2 text-stone-800 dark:text-zinc-200">{stack.name}</h4>
-                    <p className="text-[10px] text-stone-500 dark:text-zinc-500 mt-0.5">{stack.details}</p>
+                    <h4 className="font-bold text-xs mt-2 text-zinc-800 dark:text-zinc-200">{stack.name}</h4>
+                    <p className="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">{stack.details}</p>
                   </div>
                 ))}
               </div>
