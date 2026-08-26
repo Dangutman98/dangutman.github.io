@@ -531,7 +531,7 @@ export default function App() {
               </div>
               <div className="space-y-4">
                 <p className="text-sm text-stone-600 dark:text-zinc-400">
-                  Specializing in AI-integrated architectures, advanced AI coding agents, and modern cloud deployment pipelines.
+                  Specializing in AI-First development methodologies, spec-first approach, agentic coding ecosystems, and orchestrating teams of AI agents as a developer Team Lead.
                 </p>
               </div>
             </div>
