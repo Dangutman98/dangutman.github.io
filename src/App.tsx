@@ -49,6 +49,13 @@ interface Certification {
 
 const certifications: Certification[] = [
   {
+    title: "AI-First Developer Bootcamp",
+    issuer: "Abra",
+    issued: "2026 - Present",
+    verifyUrl: "#",
+    skills: ["AI Agents", "Architecture", "CI/CD"],
+  },
+  {
     title: "AWS Academy Graduate - Cloud Developing",
     issuer: "Amazon Web Services (AWS)",
     issued: "Jan 2026",
@@ -86,6 +93,13 @@ const certifications: Certification[] = [
 ];
 
 const projects: Project[] = [
+  {
+    title: "E2E Time Tracking System",
+    description: "Owned delivery E2E CI/CD, migrations, go-live and stabilization for a time tracking system built by a 4-developer Agile team. Debugged 4 live production failures. Shipped using AI coding agents under a spec-driven workflow.",
+    tags: ["Node.js", "TypeScript", "React", "PostgreSQL"],
+    icon: <Clock className="w-5 h-5 text-blue-500" />,
+    href: "https://github.com/AI-first-development-bootcamp-3/team-3",
+  },
   {
     title: "Secure Botanical AI Agent",
     description: "Engineered a serverless, hybrid RAG pipeline utilizing Groq LLMs and Pinecone. Blended dense semantic search (multilingual-e5-small) with local BM25 using Reciprocal Rank Fusion (RRF), featuring local ONNX WASM inference fallback, Docker containerization on AWS Lambda, and Terraform IaC.",
@@ -134,10 +148,10 @@ const coursework = [
 ];
 
 const skillCategories = [
-  { title: "Infrastructure & Tools", detail: "Linux, AWS, GCP, CloudFormation, Terraform, Docker" },
-  { title: "AI & GenAI Systems", detail: "Hybrid RAG, Pinecone Vector DB, BM25, RRF, ONNX (WASM), Groq/HF APIs" },
-  { title: "Databases & Storage", detail: "MySQL, Amazon RDS, Pinecone, Firebase" },
-  { title: "Programming", detail: "Python, Bash, JavaScript, TypeScript, React, Java, C#" },
+  { title: "Infrastructure & Tools", detail: "Linux, AWS, GCP, CloudFormation, Terraform, Docker, GitHub Actions, Jira" },
+  { title: "AI & GenAI Systems", detail: "Hybrid RAG, Pinecone Vector DB, BM25, RRF, ONNX (WASM), Groq/HF APIs, Claude, Anti-Gravity" },
+  { title: "Databases & Storage", detail: "PostgreSQL, MySQL, Amazon RDS, Pinecone, Firebase, Prisma" },
+  { title: "Programming", detail: "Node.js, Python, Bash, JavaScript, TypeScript, React, Java, C#" },
   { title: "Languages", detail: "Hebrew - Native, English - Proficient, Russian - Proficient" },
 ];
 
@@ -287,7 +301,7 @@ export default function App() {
                 </h2>
                 
                 <p className="mt-6 text-sm text-stone-600 dark:text-zinc-400 leading-relaxed max-w-md">
-                  Software Engineer and Computer Science graduate specializing in backend development, system automation, and AI/GenAI engineering. Experienced in building serverless RAG systems, developing automated testing scripts (Python, Bash), and deploying containerized services on AWS. Dedicated to delivering production-ready, resilient software pipelines and integrating modern AI technologies.
+                  Software Engineer Graduate with a strong computer science foundation, currently specializing in AI-integrated architectures via the AI-First Bootcamp at Abra Company. Experienced in building serverless RAG systems, developing automated testing scripts, and deploying containerized services on AWS. Dedicated to delivering production-ready, resilient software pipelines and integrating modern AI technologies.
                 </p>
               </div>
 
@@ -473,13 +487,14 @@ export default function App() {
                 <h3 className="font-bold text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Primary Stack</h3>
                 <Cpu className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                 {[
                   { name: "Backend Systems", details: "Node.js · Python · Java · C#", icon: "💻" },
-                  { name: "Cloud & IaC", details: "AWS · GCP · Terraform", icon: "☁️" },
+                  { name: "Cloud & IaC", details: "AWS · GCP · Terraform · Actions", icon: "☁️" },
                   { name: "Containers", details: "Docker · Compose", icon: "🐳" },
-                  { name: "Automation", details: "Bash · Linux · Scripting", icon: "⚙️" },
-                  { name: "AI & GenAI", details: "RAG · LLMs · Pinecone · ONNX", icon: "🧠" }
+                  { name: "Automation", details: "Bash · Linux · Jira", icon: "⚙️" },
+                  { name: "AI & GenAI", details: "RAG · Claude · Anti-Gravity", icon: "🧠" },
+                  { name: "Databases", details: "PostgreSQL · Prisma", icon: "🗄️" }
                 ].map((stack) => (
                   <div key={stack.name} className="p-3 rounded-lg bg-zinc-100/50 dark:bg-zinc-900/40 border border-zinc-200/40 dark:border-zinc-800/40 hover:-translate-y-0.5 transition-all">
                     <span className="text-base">{stack.icon}</span>
@@ -497,8 +512,32 @@ export default function App() {
         {/* ── Section 4: Education & Certs ───────────────────────────────── */}
         <section id="education" className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* Ruppin B.Sc. card */}
-          <div className="bento-card p-6 lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Bootcamp card */}
+            <div className="bento-card p-6 space-y-6">
+              <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shrink-0">
+                    <Cpu className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="font-bold text-lg text-stone-900 dark:text-white">AI-First Developer Bootcamp</h2>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 font-semibold font-mono">
+                      Abra · 2026 – Present
+                    </p>
+                  </div>
+                </div>
+                <Globe2 className="w-5 h-5 text-stone-300 dark:text-zinc-600" />
+              </div>
+              <div className="space-y-4">
+                <p className="text-sm text-stone-600 dark:text-zinc-400">
+                  Specializing in AI-integrated architectures, advanced AI coding agents, and modern cloud deployment pipelines.
+                </p>
+              </div>
+            </div>
+
+            {/* Ruppin B.Sc. card */}
+            <div className="bento-card p-6 space-y-6">
             <div className="flex items-center justify-between border-b border-stone-200/60 dark:border-zinc-800/60 pb-4">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shrink-0">
@@ -535,6 +574,7 @@ export default function App() {
                 <p>Languages: Hebrew (Native) · English (Proficient) · Russian (Proficient)</p>
               </div>
             </div>
+          </div>
           </div>
 
           {/* Certifications Card */}
